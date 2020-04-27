@@ -10,7 +10,7 @@ import puppeteer = require('puppeteer');
   const browser = await puppeteer.launch();
 
   const page = await browser.newPage();
-  await page.goto('https://www.huffpost.com/entry/america-not-set-up-for-coronavirus-fema-disaster-preparedness_n_5ea491f3c5b6d37635909669');
+  await page.goto('https://www.huffpost.com/entry/new-zealand-coronavirus-ease-restrictions_n_5ea69285c5b6805f9ed0039a');
 
 
   const titleElement = await page.$('h1.headline__title');
