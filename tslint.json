@@ -1,0 +1,21 @@
+{
+  "defaultSeverity": "warning",
+  "extends": ["tslint:recommended"],
+  "jsRules": {},
+  "rules": {
+    "quotemark": [true, "single"],
+    "indent": [true, "spaces", 2],
+    "interface-name": false,
+    "ordered-imports": false,
+    "object-literal-sort-keys": false,
+    "no-consecutive-blank-lines": false,
+    "trailing-comma": false,
+    "no-submodule-imports": false,
+    "no-console": false,
+    "no-implicit-dependencies": false,
+    "arrow-parens": [true, "ban-single-arg-parens"],
+    "variable-name": [true, "allow-leading-underscore"],
+    "unified-signatures": false
+  },
+  "rulesDirectory": []
+}
