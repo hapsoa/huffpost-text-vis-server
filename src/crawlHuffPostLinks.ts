@@ -6,6 +6,15 @@ import fs = require('fs');
 (async () => {
 
   const dateDictAboutLinks: { [date: string]: string[] } = {};
+  const sampleDateDict = {
+    'www...': {
+      link: 'www...',
+      category: 'politics',
+      title: 'Indian Women ...',
+      date: '2020-04-27',
+      subTitle: 'Indian hair is in a complicated, often heartbreaking relationship with the women who own it. We talked to eight women about the importance of hairstyles and culture.'
+    }
+  }
 
   // browser를 만든다
   const browser = await puppeteer.launch(
