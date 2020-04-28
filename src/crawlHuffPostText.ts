@@ -46,5 +46,15 @@ import puppeteer = require('puppeteer');
     '2020-04-23': ['documentObject1', 'documentObject2']
   }
 
+  const sampleDocumentDict = {
+    'www...': {
+      link: 'www...',
+      date: '2020-04-27T023132',
+      title: '...',
+      subTitle: '...',
+      content: '...'
+    }
+  }
+
 
 })();
