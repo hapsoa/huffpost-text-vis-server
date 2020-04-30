@@ -13,18 +13,7 @@ interface PostAbstract {
 
 (async () => {
 
-  const urlDictAboutPostAbstract: {
-    [url: string]: PostAbstract
-  } = {}
-  // const sampleDateDict = {
-  //   'www...': {
-  //     url: 'www...',
-  //     category: 'politics',
-  //     title: 'Indian Women ...',
-  //     date: '2020-04-27',
-  //     subTitle: 'Indian hair is in a complicated, often heartbreaking relationship with the women who own it. We talked to eight women about the importance of hairstyles and culture.'
-  //   }
-  // }
+  const postAbstracts: PostAbstract[] = [];
 
   // browser를 만든다
   const browser = await puppeteer.launch(
@@ -34,7 +23,7 @@ interface PostAbstract {
 
   // 1년간 반복한다. 2019-04-01 ~ 2020-03-31
   const date = new Date('2019-04-01');
-  while (getDateFor8String(date) !== '2019-04-03') {
+  while (getDateFor8String(date) !== '2020-04-01') {
     // browser에 page를 만든다
     const page = await browser.newPage();
 
@@ -48,10 +37,6 @@ interface PostAbstract {
     const postDivElements = await page.$$('.card__details');
 
     for (const postDivElement of postDivElements) {
-      // const categoryDivElement = await postDivElement.$('.card__label__text');
-      // const titleDivElement = await postDivElement.$('a.card__link.yr-card-headline');
-      // const subtitleDivElement = await postDivElement.$('.card__description');
-
 
       const resultsOfGettingElement = await Promise.all([
         postDivElement.$('.card__label__text'),
@@ -76,24 +61,13 @@ interface PostAbstract {
       const url = resultsOfElementEvaluation[2];
       const subtitle = resultsOfElementEvaluation[3].replace(/\n/gi, '');
 
-      // const category = await categoryDivElement.evaluate(e => e.textContent);
-
-      // let title = await titleDivElement.evaluate(e => e.textContent);
-      // title = title.replace(/\n/gi, '');
-      // @ts-ignore
-      // const url = await titleDivElement.evaluate(e => e.href);
-
-      // let subtitle = await subtitleDivElement.evaluate(e => e.textContent);
-      // subtitle = subtitle.replace(/\n/gi, '');
-
-
-      urlDictAboutPostAbstract[url] = {
+      postAbstracts.push({
         category,
         date: dateString,
         subtitle,
         title,
         url
-      }
+      });
     }
 
 
@@ -111,7 +85,7 @@ interface PostAbstract {
   // browser를 종료한다
   await browser.close();
 
-  fs.writeFileSync('result-data/links2.json', JSON.stringify(urlDictAboutPostAbstract));
+  fs.writeFileSync('result-data/abstract.json', JSON.stringify(postAbstracts));
   console.log('process done');
 })();
 
