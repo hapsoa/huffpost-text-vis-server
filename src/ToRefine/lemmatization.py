@@ -26,7 +26,7 @@ def get_wordnet_pos(treebank_tag):
 
 # import json file
 if __name__ == '__main__':
-    with open('../../result-data/huffPostDataForTest.json', encoding='UTF8') as json_file:
+    with open('../../result-data/huffPostData.json', encoding='UTF8') as json_file:
         huffPostData = json.load(json_file)
 
         combinedLemmatizedTexts = []
@@ -40,6 +40,8 @@ if __name__ == '__main__':
 
             # 2)lemmatize
             words = word_tokenize(combinedText)
+            for (i, word) in enumerate(words):
+                words[i] = word.lower()
             wordsIncludingPos = pos_tag(words)
             lemmatizedWords = [wordNetLemmatizer.lemmatize(
                 w[0], get_wordnet_pos(w[1])) for w in wordsIncludingPos]
@@ -49,9 +51,11 @@ if __name__ == '__main__':
             # Should we remove ","??
             combinedLemmatizedText = ''
             for lemmatizedWord in lemmatizedWords:
-                # TODO regularCompiled = re.compile('[^a-zA-Z]')
-
-                combinedLemmatizedText += ' ' + lemmatizedWord
+                regex = re.compile('[.!,?]')
+                if regex.match(lemmatizedWord) == None:
+                    combinedLemmatizedText += ' ' + lemmatizedWord
+                else:
+                    combinedLemmatizedText += lemmatizedWord
 
             combinedLemmatizedTexts.append(combinedLemmatizedText)
 

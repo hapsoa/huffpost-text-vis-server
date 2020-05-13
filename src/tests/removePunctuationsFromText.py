@@ -9,3 +9,5 @@ result = s.translate(str.maketrans('', '', string.punctuation))
 # Hello Nice to meet you d
 
 print(result)
+
+print(string.punctuation)
