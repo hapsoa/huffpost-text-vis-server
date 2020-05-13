@@ -5,6 +5,7 @@ from nltk.stem import WordNetLemmatizer
 import json
 import sys
 import nltk
+import re
 # nltk.download('wordnet')
 # nltk.download('averaged_perceptron_tagger')
 
@@ -48,9 +49,8 @@ if __name__ == '__main__':
             # Should we remove ","??
             combinedLemmatizedText = ''
             for lemmatizedWord in lemmatizedWords:
-                # regex = /a/
-                # regexResult = lemmatizedWord.match(regex)
-                # print(regexResult)
+                # TODO regularCompiled = re.compile('[^a-zA-Z]')
+
                 combinedLemmatizedText += ' ' + lemmatizedWord
 
             combinedLemmatizedTexts.append(combinedLemmatizedText)
