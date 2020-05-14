@@ -39,7 +39,7 @@ ldamodel = gensim.models.ldamodel.LdaModel(
 
 topics = ldamodel.show_topic(0, topn=10)
 for topic in topics:
-    print(topic)
+    print(topic)  # ('topicKeyword', 0.7)
 
 
 # topics = ldamodel.print_topics(num_words=10)
