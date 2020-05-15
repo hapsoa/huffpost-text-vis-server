@@ -6,10 +6,10 @@ import codecs
 
 if __name__ == '__main__':
     # import huffPostData.json file
-    with open('../../test-data/huffPostDataForTest.json', encoding='UTF8') as jsonFile:
+    with open('../../result-data/huffPostData.json', encoding='UTF8') as jsonFile:
         huffPostData = json.load(jsonFile)
         combinedLemmatizedTexts = json.load(codecs.open(
-            '../../test-data/combinedLemmatizedTextsForTest.json', 'r', 'utf-8-sig'))
+            '../../result-data/combinedLemmatizedTexts.json', 'r', 'utf-8-sig'))
 
         print('pandas DataFrame start')
         pdDataFrame = pd.DataFrame({'documents': combinedLemmatizedTexts})
@@ -37,13 +37,17 @@ if __name__ == '__main__':
                 corpus, num_topics=1, id2word=dictionary, passes=15)
 
             topics = ldamodel.show_topic(0, topn=10)
-            print('i', i)
-            huffPostData[i]['keywords'] = []
+            # print('i', i)
+            huffPostData[i]['keywordObjects'] = []
             # print('huffPostData[i]', huffPostData[i])
             for topic in topics:
-                huffPostData[i]['keywords'].append(topic[0])
+                # huffPostData[i]['keywords'].append(topic[0])
+                huffPostData[i]['keywordObjects'].append({
+                    "keyword": topic[0],
+                    "weight": float(str(topic[1]))
+                })
 
-        with open('../../test-data/huffPostDataIncludingKeywordsForTest.json', 'w', encoding='UTF-8-sig') as outfile:
+        with open('../../result-data/huffPostDataIncludingKeywords.json', 'w', encoding='UTF-8-sig') as outfile:
             outfile.write(json.dumps(
                 huffPostData, ensure_ascii=False))
 
