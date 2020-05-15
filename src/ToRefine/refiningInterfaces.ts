@@ -12,3 +12,11 @@ export interface HuffPostDatum {
 export interface InvertedIndex {
   [keywordInDictionary: string]: number[];
 }
+
+export interface KeywordObjectDict {
+  [keyword: string]: {
+    keyword: string;
+    weight: number;
+    orderIndex: number; // alphabet order index
+  }
+}

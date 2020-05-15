@@ -56,4 +56,5 @@ corpus = [dictionary.doc2bow(tokenizedText)
 corpora.MmCorpus.serialize('../../test-data/gensimCorpus.mm', corpus)
 
 # load corpus
-# corpus = corpora.MmCorpus('../../test-data/gensimCorpus.mm') # list(corpus) => real corpus text data
+# corpus = corpora.MmCorpus('../../test-data/gensimCorpus.mm')
+# list(corpus) => real corpus text data

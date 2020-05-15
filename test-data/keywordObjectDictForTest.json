@@ -1,0 +1,137 @@
+{
+  "zelenskiy": {
+    "keyword": "zelenskiy",
+    "weight": 0.0176771,
+    "orderIndex": 26
+  },
+  "poroshenko": {
+    "keyword": "poroshenko",
+    "weight": 0.016414443,
+    "orderIndex": 12
+  },
+  "with": {
+    "keyword": "with",
+    "weight": 0.023413075999999998,
+    "orderIndex": 25
+  },
+  "election": {
+    "keyword": "election",
+    "weight": 0.012626469,
+    "orderIndex": 6
+  },
+  "that": {
+    "keyword": "that",
+    "weight": 0.010101156,
+    "orderIndex": 19
+  },
+  "have": {
+    "keyword": "have",
+    "weight": 0.025902629,
+    "orderIndex": 8
+  },
+  "vote": {
+    "keyword": "vote",
+    "weight": 0.026768144,
+    "orderIndex": 23
+  },
+  "president": {
+    "keyword": "president",
+    "weight": 0.008838499,
+    "orderIndex": 13
+  },
+  "ukraine": {
+    "keyword": "ukraine",
+    "weight": 0.008838499,
+    "orderIndex": 22
+  },
+  "runoff": {
+    "keyword": "runoff",
+    "weight": 0.0075758416,
+    "orderIndex": 15
+  },
+  "horse": {
+    "keyword": "horse",
+    "weight": 0.024830945,
+    "orderIndex": 9
+  },
+  "death": {
+    "keyword": "death",
+    "weight": 0.018058838,
+    "orderIndex": 5
+  },
+  "anita": {
+    "keyword": "anita",
+    "weight": 0.015801473,
+    "orderIndex": 1
+  },
+  "santa": {
+    "keyword": "santa",
+    "weight": 0.015801473,
+    "orderIndex": 16
+  },
+  "sport": {
+    "keyword": "sport",
+    "weight": 0.013544105,
+    "orderIndex": 17
+  },
+  "angeles": {
+    "keyword": "angeles",
+    "weight": 0.013544105,
+    "orderIndex": 0
+  },
+  "stronach": {
+    "keyword": "stronach",
+    "weight": 0.01128674,
+    "orderIndex": 18
+  },
+  "toll": {
+    "keyword": "toll",
+    "weight": 0.01128674,
+    "orderIndex": 21
+  },
+  "race": {
+    "keyword": "race",
+    "weight": 0.01128674,
+    "orderIndex": 14
+  },
+  "deal": {
+    "keyword": "deal",
+    "weight": 0.015476483,
+    "orderIndex": 4
+  },
+  "brexit": {
+    "keyword": "brexit",
+    "weight": 0.015476481,
+    "orderIndex": 2
+  },
+  "motion": {
+    "keyword": "motion",
+    "weight": 0.014285975,
+    "orderIndex": 11
+  },
+  "this": {
+    "keyword": "this",
+    "weight": 0.013095466,
+    "orderIndex": 20
+  },
+  "will": {
+    "keyword": "will",
+    "weight": 0.0119049605,
+    "orderIndex": 24
+  },
+  "minister": {
+    "keyword": "minister",
+    "weight": 0.009523949,
+    "orderIndex": 10
+  },
+  "from": {
+    "keyword": "from",
+    "weight": 0.008333442,
+    "orderIndex": 7
+  },
+  "common": {
+    "keyword": "common",
+    "weight": 0.008333442,
+    "orderIndex": 3
+  }
+}
