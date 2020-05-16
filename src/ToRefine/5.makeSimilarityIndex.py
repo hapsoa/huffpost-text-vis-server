@@ -3,16 +3,26 @@
 from gensim import corpora
 from gensim.similarities import MatrixSimilarity
 
+# for test file path
+# gensimDictionaryFilePath = '../../test-data/gensimDictionary.dict'
+# gensimCorpusFilePath = '../../test-data/gensimCorpus.mm'
+# writingSimilarityIndexFilePath = '../../test-data/similarityIndexForTest'
+
+# for real file path
+gensimDictionaryFilePath = '../../result-data/gensimDictionary.dict'
+gensimCorpusFilePath = '../../result-data/gensimCorpus.mm'
+writingSimilarityIndexFilePath = '../../result-data/similarityIndex'
+
 # load gensim_dictionary and gensim_corpus
-dictionary = corpora.Dictionary.load('../../test-data/gensimDictionary.dict')
-corpus = corpora.MmCorpus('../../test-data/gensimCorpus.mm')
+dictionary = corpora.Dictionary.load(gensimDictionaryFilePath)
+corpus = corpora.MmCorpus(gensimCorpusFilePath)
 
 # make similarityIndex
 similarityIndex = MatrixSimilarity(corpus, num_best=9,
                                    num_features=len(dictionary))
 
 # save similarityIndex
-similarityIndex.save('../../test-data/similarityIndexForTest')
+similarityIndex.save(writingSimilarityIndexFilePath)
 
 
 # # test query_keywords

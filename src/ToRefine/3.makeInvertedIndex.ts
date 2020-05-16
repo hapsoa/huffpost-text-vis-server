@@ -4,8 +4,12 @@ import fs = require('fs');
 import _ = require('lodash');
 import { HuffPostDatum, InvertedIndex } from './refiningInterfaces';
 
-const readingFilePath: string = '../../test-data/huffPostDataIncludingKeywordsForTest.json';
-const writingFilePath: string = '../../test-data/invertedIndexForTest.json';
+// for test path
+// const readingFilePath: string = '../../test-data/huffPostDataIncludingKeywordsForTest.json';
+// const writingFilePath: string = '../../test-data/invertedIndexForTest.json';
+// for real path
+const readingFilePath: string = '../../result-data/huffPostDataIncludingKeywords.json';
+const writingFilePath: string = '../../result-data/invertedIndex.json';
 
 // import huffPostDataIncludingKeywords.json
 // tslint:disable-next-line: no-var-requires

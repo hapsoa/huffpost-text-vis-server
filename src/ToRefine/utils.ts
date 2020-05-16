@@ -14,7 +14,7 @@ export function makeMonthUnitsFromHuffPostData(innerHuffPostData: HuffPostDatum[
     lastDate.getFullYear() + '-' + lastDate.getMonth()) {
     times.push(initialDate.getFullYear() + '-' +
       getStringMonthFromNumberMonth(initialDate.getMonth() + 1))
-    initialDate.setMonth(initialDate.getMonth() + 2);
+    initialDate.setMonth(initialDate.getMonth() + 1);
   }
 
   return times;

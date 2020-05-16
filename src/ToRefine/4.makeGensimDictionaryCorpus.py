@@ -8,12 +8,21 @@ from collections import defaultdict
 import re
 import pandas as pd
 
+# for test file path
+# combinedLemmatizedTextsFilePath = '../../test-data/combinedLemmatizedTextsForTest.json'
+# writingGensimDictionaryFilePath = '../../test-data/gensimDictionary.dict'
+# writingGensimCorpusFilePath = '../../test-data/gensimCorpus.mm'
+
+# for real file path
+combinedLemmatizedTextsFilePath = '../../result-data/combinedLemmatizedTexts.json'
+writingGensimDictionaryFilePath = '../../result-data/gensimDictionary.dict'
+writingGensimCorpusFilePath = '../../result-data/gensimCorpus.mm'
+
 # read combinedLemmatizedTextsForTest.json
 combinedLemmatizedTexts = json.load(codecs.open(
-    '../../test-data/combinedLemmatizedTextsForTest.json', 'r', 'utf-8-sig'))
+    combinedLemmatizedTextsFilePath, 'r', 'utf-8-sig'))
 
 # preprocessing of combinedLemmatizedTexts
-
 pdDataFrame = pd.DataFrame({'documents': combinedLemmatizedTexts})
 # 특수 문자 제거
 pdDataFrame['clean_docs'] = pdDataFrame['documents'].str.replace(
@@ -46,14 +55,14 @@ tokenizedTexts = [
 dictionary = corpora.Dictionary(tokenizedTexts)
 
 # store the dictionary, for future reference
-dictionary.save('../../test-data/gensimDictionary.dict')
+dictionary.save(writingGensimDictionaryFilePath)
 
 # for each text, make vectorOfBOW
 corpus = [dictionary.doc2bow(tokenizedText)
           for tokenizedText in tokenizedTexts]
 
 # store corpus to disk, for later use
-corpora.MmCorpus.serialize('../../test-data/gensimCorpus.mm', corpus)
+corpora.MmCorpus.serialize(writingGensimCorpusFilePath, corpus)
 
 # load corpus
 # corpus = corpora.MmCorpus('../../test-data/gensimCorpus.mm')

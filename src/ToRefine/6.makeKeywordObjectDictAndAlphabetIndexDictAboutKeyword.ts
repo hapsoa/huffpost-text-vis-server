@@ -1,27 +1,41 @@
 import fs = require('fs');
 import _ = require('lodash');
-import { HuffPostDatum, KeywordObjectDict, TimeDictAboutKeywordObjectDict } from './refiningInterfaces';
+import { HuffPostDatum, KeywordObjectDict, TimeDictAboutKeywordObjectDict, AlphabetIndexDictAboutKeyword } from './refiningInterfaces';
 import { makeMonthUnitsFromHuffPostData, getYearMonthFromStringDate } from './utils';
 
+// for test file path
+// const readingHuffPostDataIncludingKeywordsJsonPath
+//   = '../../test-data/huffPostDataIncludingKeywordsForTest.json'
+// const writingKeywordObjectDictTotalTimeJsonPath
+//   = '../../test-data/keywordObjectDictTotalTimeForTest.json';
+// const writingTimeDictAboutKeywordObjectDictEachTimeJsonPath
+//   = '../../test-data/timeDictAboutKeywordObjectDictForTest.json';
+// const writingAlphabetIndexDictAboutKeywordFilePath
+//   = '../../test-data/alphabetIndexDictAboutKeywordForTest.json';
+
+// for real file path
 const readingHuffPostDataIncludingKeywordsJsonPath
-  = '../../test-data/huffPostDataIncludingKeywordsForTest.json'
+  = '../../result-data/huffPostDataIncludingKeywords.json'
 const writingKeywordObjectDictTotalTimeJsonPath
-  = '../../test-data/keywordObjectDictTotalTimeForTest.json';
+  = '../../result-data/keywordObjectDictTotalTime.json';
 const writingTimeDictAboutKeywordObjectDictEachTimeJsonPath
-  = '../../test-data/timeDictAboutKeywordObjectDict.json';
+  = '../../result-data/timeDictAboutKeywordObjectDict.json';
+const writingAlphabetIndexDictAboutKeywordFilePath
+  = '../../result-data/alphabetIndexDictAboutKeyword.json';
+
 
 // read huffPostDataIncludingKeywords.json
 const huffPostData: HuffPostDatum[] = require(readingHuffPostDataIncludingKeywordsJsonPath);
 
 
 const timeDictAboutKeywordObjectDict: TimeDictAboutKeywordObjectDict = {};
-
-// make data structure
 const keywordObjectDictTotalTime: KeywordObjectDict = {};
+const alphabetIndexDictAboutKeyword: AlphabetIndexDictAboutKeyword = {};
 
 // make keywordObjectDict each time
 // const times: string[] = ['2019-04', ..., '2020-03'];
 const timeUnits: string[] = makeMonthUnitsFromHuffPostData(huffPostData);
+// console.log('timeUnits', timeUnits);
 timeUnits.forEach(timeUnit => {
   timeDictAboutKeywordObjectDict[timeUnit] = {};
 })
@@ -44,6 +58,7 @@ huffPostData.forEach(huffPostDatum => {
 
     // at each month
     const yearMonth = getYearMonthFromStringDate(huffPostDatum.date);
+    // console.log('yearMonth', yearMonth)
     const keywordObjectDict1Month = timeDictAboutKeywordObjectDict[yearMonth]
     if (keywordObjectDict1Month.hasOwnProperty(keywordObject.keyword)) {
       keywordObjectDict1Month[keywordObject.keyword].frequency += 1;
@@ -64,6 +79,7 @@ _.chain(keywordObjectDictTotalTime)
   .sortBy(keywordObject => keywordObject.keyword)
   .forEach((keywordObject, orderIndex) => {
     keywordObject.alphabetIndex = orderIndex;
+    alphabetIndexDictAboutKeyword[orderIndex] = keywordObject.keyword;
   })
   .value();
 
@@ -76,8 +92,12 @@ _.forEach(timeDictAboutKeywordObjectDict, keywordObjectDict1Month => {
 
 
 // write keywordWeightDict.json
-fs.writeFileSync(writingKeywordObjectDictTotalTimeJsonPath, JSON.stringify(keywordObjectDictTotalTime, null, 2));
-fs.writeFileSync(writingTimeDictAboutKeywordObjectDictEachTimeJsonPath, JSON.stringify(timeDictAboutKeywordObjectDict, null, 2));
+fs.writeFileSync(writingKeywordObjectDictTotalTimeJsonPath,
+  JSON.stringify(keywordObjectDictTotalTime, null, 2));
+fs.writeFileSync(writingTimeDictAboutKeywordObjectDictEachTimeJsonPath,
+  JSON.stringify(timeDictAboutKeywordObjectDict, null, 2));
+fs.writeFileSync(writingAlphabetIndexDictAboutKeywordFilePath,
+  JSON.stringify(alphabetIndexDictAboutKeyword, null, 2));
 
 
 

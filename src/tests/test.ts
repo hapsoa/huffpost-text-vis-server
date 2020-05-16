@@ -1,8 +1,6 @@
-const date = new Date('2019-04-01');
+console.log('start test.ts process');
 
-for (let i = 0; i < 12; i++) {
-  console.log('date', date);
-  console.log('fullyear', date.getFullYear())
-  date.setMonth(date.getMonth() + 2);
-}
+// slow read
+const bigData = require('../../result-data/keywordRelationMatrixTotalTime.json');
 
+console.log('bigData[10][10]', bigData[10][10]);

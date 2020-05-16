@@ -31,3 +31,7 @@ export interface TimeDictAboutKeywordObjectDict {
 export interface TimeDictAboutKeywordRelationMatrix {
   [time: string]: number[][];
 }
+
+export interface AlphabetIndexDictAboutKeyword {
+  [alphabetIndex: number]: string;
+}
