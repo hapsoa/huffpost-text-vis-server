@@ -1,0 +1,166 @@
+{
+  "2019-04": {
+    "zelenskiy": {
+      "keyword": "zelenskiy",
+      "frequency": 1,
+      "weight": 0.0176771,
+      "alphabetIndex": 26
+    },
+    "poroshenko": {
+      "keyword": "poroshenko",
+      "frequency": 1,
+      "weight": 0.016414443,
+      "alphabetIndex": 12
+    },
+    "with": {
+      "keyword": "with",
+      "frequency": 2,
+      "weight": 0.023413075999999998,
+      "alphabetIndex": 25
+    },
+    "election": {
+      "keyword": "election",
+      "frequency": 1,
+      "weight": 0.012626469,
+      "alphabetIndex": 6
+    },
+    "that": {
+      "keyword": "that",
+      "frequency": 1,
+      "weight": 0.010101156,
+      "alphabetIndex": 19
+    },
+    "have": {
+      "keyword": "have",
+      "frequency": 2,
+      "weight": 0.025902629,
+      "alphabetIndex": 8
+    },
+    "vote": {
+      "keyword": "vote",
+      "frequency": 2,
+      "weight": 0.026768144,
+      "alphabetIndex": 23
+    },
+    "president": {
+      "keyword": "president",
+      "frequency": 1,
+      "weight": 0.008838499,
+      "alphabetIndex": 13
+    },
+    "ukraine": {
+      "keyword": "ukraine",
+      "frequency": 1,
+      "weight": 0.008838499,
+      "alphabetIndex": 22
+    },
+    "runoff": {
+      "keyword": "runoff",
+      "frequency": 1,
+      "weight": 0.0075758416,
+      "alphabetIndex": 15
+    },
+    "horse": {
+      "keyword": "horse",
+      "frequency": 1,
+      "weight": 0.024830945,
+      "alphabetIndex": 9
+    },
+    "death": {
+      "keyword": "death",
+      "frequency": 1,
+      "weight": 0.018058838,
+      "alphabetIndex": 5
+    },
+    "anita": {
+      "keyword": "anita",
+      "frequency": 1,
+      "weight": 0.015801473,
+      "alphabetIndex": 1
+    },
+    "santa": {
+      "keyword": "santa",
+      "frequency": 1,
+      "weight": 0.015801473,
+      "alphabetIndex": 16
+    },
+    "sport": {
+      "keyword": "sport",
+      "frequency": 1,
+      "weight": 0.013544105,
+      "alphabetIndex": 17
+    },
+    "angeles": {
+      "keyword": "angeles",
+      "frequency": 1,
+      "weight": 0.013544105,
+      "alphabetIndex": 0
+    },
+    "stronach": {
+      "keyword": "stronach",
+      "frequency": 1,
+      "weight": 0.01128674,
+      "alphabetIndex": 18
+    },
+    "toll": {
+      "keyword": "toll",
+      "frequency": 1,
+      "weight": 0.01128674,
+      "alphabetIndex": 21
+    },
+    "race": {
+      "keyword": "race",
+      "frequency": 1,
+      "weight": 0.01128674,
+      "alphabetIndex": 14
+    },
+    "deal": {
+      "keyword": "deal",
+      "frequency": 1,
+      "weight": 0.015476483,
+      "alphabetIndex": 4
+    },
+    "brexit": {
+      "keyword": "brexit",
+      "frequency": 1,
+      "weight": 0.015476481,
+      "alphabetIndex": 2
+    },
+    "motion": {
+      "keyword": "motion",
+      "frequency": 1,
+      "weight": 0.014285975,
+      "alphabetIndex": 11
+    },
+    "this": {
+      "keyword": "this",
+      "frequency": 1,
+      "weight": 0.013095466,
+      "alphabetIndex": 20
+    },
+    "will": {
+      "keyword": "will",
+      "frequency": 1,
+      "weight": 0.0119049605,
+      "alphabetIndex": 24
+    },
+    "minister": {
+      "keyword": "minister",
+      "frequency": 1,
+      "weight": 0.009523949,
+      "alphabetIndex": 10
+    },
+    "from": {
+      "keyword": "from",
+      "frequency": 1,
+      "weight": 0.008333442,
+      "alphabetIndex": 7
+    },
+    "common": {
+      "keyword": "common",
+      "frequency": 1,
+      "weight": 0.008333442,
+      "alphabetIndex": 3
+    }
+  }
+}

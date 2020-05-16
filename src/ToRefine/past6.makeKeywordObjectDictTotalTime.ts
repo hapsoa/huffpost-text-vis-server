@@ -19,7 +19,7 @@ huffPostData.forEach(huffPostDatum => {
         keyword: keywordObject.keyword,
         frequency: 1,
         weight: keywordObject.weight,
-        orderIndex: -1
+        alphabetIndex: -1
       }
     }
   });
@@ -29,7 +29,7 @@ huffPostData.forEach(huffPostDatum => {
 _.chain(keywordObjectDict)
   .sortBy(keywordObject => keywordObject.keyword)
   .forEach((keywordObject, orderIndex) => {
-    keywordObject.orderIndex = orderIndex;
+    keywordObject.alphabetIndex = orderIndex;
   })
   .value();
 

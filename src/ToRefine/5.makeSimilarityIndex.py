@@ -1,3 +1,5 @@
+# Make similarity_index code for top K documents retrieval
+
 from gensim import corpora
 from gensim.similarities import MatrixSimilarity
 

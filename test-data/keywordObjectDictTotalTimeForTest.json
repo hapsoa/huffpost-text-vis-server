@@ -3,162 +3,162 @@
     "keyword": "zelenskiy",
     "frequency": 1,
     "weight": 0.0176771,
-    "orderIndex": 26
+    "alphabetIndex": 26
   },
   "poroshenko": {
     "keyword": "poroshenko",
     "frequency": 1,
     "weight": 0.016414443,
-    "orderIndex": 12
+    "alphabetIndex": 12
   },
   "with": {
     "keyword": "with",
     "frequency": 2,
     "weight": 0.023413075999999998,
-    "orderIndex": 25
+    "alphabetIndex": 25
   },
   "election": {
     "keyword": "election",
     "frequency": 1,
     "weight": 0.012626469,
-    "orderIndex": 6
+    "alphabetIndex": 6
   },
   "that": {
     "keyword": "that",
     "frequency": 1,
     "weight": 0.010101156,
-    "orderIndex": 19
+    "alphabetIndex": 19
   },
   "have": {
     "keyword": "have",
     "frequency": 2,
     "weight": 0.025902629,
-    "orderIndex": 8
+    "alphabetIndex": 8
   },
   "vote": {
     "keyword": "vote",
     "frequency": 2,
     "weight": 0.026768144,
-    "orderIndex": 23
+    "alphabetIndex": 23
   },
   "president": {
     "keyword": "president",
     "frequency": 1,
     "weight": 0.008838499,
-    "orderIndex": 13
+    "alphabetIndex": 13
   },
   "ukraine": {
     "keyword": "ukraine",
     "frequency": 1,
     "weight": 0.008838499,
-    "orderIndex": 22
+    "alphabetIndex": 22
   },
   "runoff": {
     "keyword": "runoff",
     "frequency": 1,
     "weight": 0.0075758416,
-    "orderIndex": 15
+    "alphabetIndex": 15
   },
   "horse": {
     "keyword": "horse",
     "frequency": 1,
     "weight": 0.024830945,
-    "orderIndex": 9
+    "alphabetIndex": 9
   },
   "death": {
     "keyword": "death",
     "frequency": 1,
     "weight": 0.018058838,
-    "orderIndex": 5
+    "alphabetIndex": 5
   },
   "anita": {
     "keyword": "anita",
     "frequency": 1,
     "weight": 0.015801473,
-    "orderIndex": 1
+    "alphabetIndex": 1
   },
   "santa": {
     "keyword": "santa",
     "frequency": 1,
     "weight": 0.015801473,
-    "orderIndex": 16
+    "alphabetIndex": 16
   },
   "sport": {
     "keyword": "sport",
     "frequency": 1,
     "weight": 0.013544105,
-    "orderIndex": 17
+    "alphabetIndex": 17
   },
   "angeles": {
     "keyword": "angeles",
     "frequency": 1,
     "weight": 0.013544105,
-    "orderIndex": 0
+    "alphabetIndex": 0
   },
   "stronach": {
     "keyword": "stronach",
     "frequency": 1,
     "weight": 0.01128674,
-    "orderIndex": 18
+    "alphabetIndex": 18
   },
   "toll": {
     "keyword": "toll",
     "frequency": 1,
     "weight": 0.01128674,
-    "orderIndex": 21
+    "alphabetIndex": 21
   },
   "race": {
     "keyword": "race",
     "frequency": 1,
     "weight": 0.01128674,
-    "orderIndex": 14
+    "alphabetIndex": 14
   },
   "deal": {
     "keyword": "deal",
     "frequency": 1,
     "weight": 0.015476483,
-    "orderIndex": 4
+    "alphabetIndex": 4
   },
   "brexit": {
     "keyword": "brexit",
     "frequency": 1,
     "weight": 0.015476481,
-    "orderIndex": 2
+    "alphabetIndex": 2
   },
   "motion": {
     "keyword": "motion",
     "frequency": 1,
     "weight": 0.014285975,
-    "orderIndex": 11
+    "alphabetIndex": 11
   },
   "this": {
     "keyword": "this",
     "frequency": 1,
     "weight": 0.013095466,
-    "orderIndex": 20
+    "alphabetIndex": 20
   },
   "will": {
     "keyword": "will",
     "frequency": 1,
     "weight": 0.0119049605,
-    "orderIndex": 24
+    "alphabetIndex": 24
   },
   "minister": {
     "keyword": "minister",
     "frequency": 1,
     "weight": 0.009523949,
-    "orderIndex": 10
+    "alphabetIndex": 10
   },
   "from": {
     "keyword": "from",
     "frequency": 1,
     "weight": 0.008333442,
-    "orderIndex": 7
+    "alphabetIndex": 7
   },
   "common": {
     "keyword": "common",
     "frequency": 1,
     "weight": 0.008333442,
-    "orderIndex": 3
+    "alphabetIndex": 3
   }
 }

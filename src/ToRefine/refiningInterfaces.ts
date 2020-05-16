@@ -17,9 +17,17 @@ export interface KeywordObject {
   keyword: string;
   frequency: number;
   weight: number;
-  orderIndex: number; // alphabet order index
+  alphabetIndex: number; // alphabet order index
 }
 
 export interface KeywordObjectDict {
   [keyword: string]: KeywordObject;
+}
+
+export interface TimeDictAboutKeywordObjectDict {
+  [time: string]: KeywordObjectDict;
+}
+
+export interface TimeDictAboutKeywordRelationMatrix {
+  [time: string]: number[][];
 }

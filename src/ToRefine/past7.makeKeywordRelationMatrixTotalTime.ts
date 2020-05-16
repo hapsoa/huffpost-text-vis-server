@@ -20,20 +20,10 @@ keywordRelationMatrix.forEach((oneKeywordRelation, i) => {
 _.forEach(keywordObjectDict, keywordObjectA => {
   _.forEach(keywordObjectDict, keywordObjectB => {
     // make relation the keyword and another keyword
-    // recall, precision needed (huffPostData needed)
-
-    // (tp + fp) is number of retreived posts including keyword1
-    // tp is number of retrieved posts including keyword2
-    // (tp + fn) is number of all posts including keyword2
     const fMeasureAB = getFMeasureBetween2Words(keywordObjectA, keywordObjectB, huffPostData);
-    // another fMeasure
     const fMeasureBA = getFMeasureBetween2Words(keywordObjectB, keywordObjectA, huffPostData);
-
-    // then make harmonic mean
-
-    // then make relation
     const relation = 1 - getHarmonicMeanBetween2(1 - fMeasureAB, 1 - fMeasureBA);
-    keywordRelationMatrix[keywordObjectA.orderIndex][keywordObjectB.orderIndex] = relation;
+    keywordRelationMatrix[keywordObjectA.alphabetIndex][keywordObjectB.alphabetIndex] = relation;
   });
 });
 
@@ -61,6 +51,9 @@ function getFMeasureBetween2Words(
   keywordObjectB: KeywordObject,
   innerHuffPostData: HuffPostDatum[]
 ): number {
+  // (tp + fp) is number of retreived posts including keyword1
+  // tp is number of retrieved posts including keyword2
+  // (tp + fn) is number of all posts including keyword2
   const tpfpAB: number = getNumberOfRetrievedPostsIncludingKeywords(
     [keywordObjectA.keyword], innerHuffPostData);
   const tpAB: number = getNumberOfRetrievedPostsIncludingKeywords(
