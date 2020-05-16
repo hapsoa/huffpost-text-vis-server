@@ -1,60 +1,93 @@
 import fs = require('fs');
-import { KeywordObjectDict, HuffPostDatum, KeywordObject, TimeDictAboutKeywordRelationMatrix } from './refiningInterfaces';
+import { KeywordObjectDict, HuffPostDatum, KeywordObject, AlphabetIndexDictAboutKeyword } from './refiningInterfaces';
 import _ = require('lodash');
 import { makeMonthUnitsFromHuffPostData, getYearMonthFromStringDate } from './utils';
 
+interface KeywordRelation {
+  [keywordIndex: number]: number;
+}
+
+interface TimeDictAboutKeywordRelationMatrix {
+  [yearMonth: string]: KeywordRelation[]
+}
+
 // for test file path
+// const huffPostDataJsonPath: string = '../../test-data/huffPostDataIncludingKeywordsForTest.json';
 // const keywordObjectDictJsonPath: string
 //   = '../../test-data/keywordObjectDictTotalTimeForTest.json';
-// const huffPostDataJsonPath: string = '../../test-data/huffPostDataIncludingKeywordsForTest.json';
+// const alphabetIndexDictAboutKeywordFilePath =
+//   '../../test-data/alphabetIndexDictAboutKeywordForTest.json';
 // const writingKeywordRelationMatrixTotalTimeFilePath =
 //   '../../test-data/keywordRelationMatrixTotalTimeForTest.json'
 // const writingTimeDictAboutKeywordRelationMatrixFilePath: string =
 //   '../../test-data/timeDictAboutKeywordRelationMatrixForTest.json';
 
 // for real file path
+const huffPostDataJsonPath: string = '../../result-data/huffPostDataIncludingKeywords.json';
 const keywordObjectDictJsonPath: string
   = '../../result-data/keywordObjectDictTotalTime.json';
-const huffPostDataJsonPath: string = '../../result-data/huffPostDataIncludingKeywords.json';
+const alphabetIndexDictAboutKeywordFilePath =
+  '../../result-data/alphabetIndexDictAboutKeyword.json';
 const writingKeywordRelationMatrixTotalTimeFilePath =
-  '../../result-data/keywordRelationMatrixTotalTime.json'
+  '../../result-data/keywordRelationMatrixTotalTime.json';
 const writingTimeDictAboutKeywordRelationMatrixFilePath: string =
   '../../result-data/timeDictAboutKeywordRelationMatrix.json';
 
 
-const keywordObjectDict: KeywordObjectDict = require(keywordObjectDictJsonPath);
 const huffPostData: HuffPostDatum[] = require(huffPostDataJsonPath);
+const keywordObjectDict: KeywordObjectDict = require(keywordObjectDictJsonPath);
+const alphabetIndexDictAboutKeyword: AlphabetIndexDictAboutKeyword
+  = require(alphabetIndexDictAboutKeywordFilePath);
+
+console.log('start');
 
 const timeDictAboutKeywordRelationMatrix: TimeDictAboutKeywordRelationMatrix = {};
 
 // make time property to timeDict
 const timeUnits: string[] = makeMonthUnitsFromHuffPostData(huffPostData);
-
-console.log('start');
 timeUnits.forEach(timeUnit => {
-  console.log('timeUnit', timeUnit)
-  timeDictAboutKeywordRelationMatrix[timeUnit] = getInitialKeywordRelationMatrix(keywordObjectDict);
+  console.log('timeUnit', timeUnit);
+  timeDictAboutKeywordRelationMatrix[timeUnit] = []
+  for (let i = 0; i < Object.keys(keywordObjectDict).length; i++) {
+    timeDictAboutKeywordRelationMatrix[timeUnit].push({});
+  }
 })
 
 // sparse matrix
-// [[weight0(keyword0-keyword0), weight1(keyword0-keyword1), ...]]
+// [
+//   {2(keyword0-keyword2): 0.76(weight), 5: 0.8, ...},
+//   ...
+// ]
 // Initialize 2d-array of each value 0.
-const keywordRelationMatrixTotalTime: number[][] = getInitialKeywordRelationMatrix(keywordObjectDict);
-// TODO out of memory
-console.log('ok!');
+console.log('keywordRelationMatrixTotalTime start');
+const keywordRelationMatrixTotalTime: KeywordRelation[] = []
+for (let i = 0; i < Object.keys(keywordObjectDict).length; i++) {
+  keywordRelationMatrixTotalTime.push({});
+}
 
+const minimumRelation: number = 0.1
 // for each keyword and for another each keyword,
 _.forEach(keywordObjectDict, keywordObjectA => {
+  console.log('keywordObjectA ', keywordObjectA.keyword, ' start!');
   _.forEach(keywordObjectDict, keywordObjectB => {
+
     // make relation the keyword and another keyword
-    keywordRelationMatrixTotalTime[keywordObjectA.alphabetIndex][keywordObjectB.alphabetIndex] =
-      makeRelationBetween2Keywords(keywordObjectA, keywordObjectB, huffPostData);
+    const relation: number = makeRelationBetween2Keywords(keywordObjectA, keywordObjectB, huffPostData);
+
+    if (relation > minimumRelation) {
+      keywordRelationMatrixTotalTime[keywordObjectA.alphabetIndex][keywordObjectB.alphabetIndex] =
+        relation;
+    }
 
     // for each month, make relation.
     timeUnits.forEach(timeUnit => {
       const keywordRelationMatrix1Month = timeDictAboutKeywordRelationMatrix[timeUnit]
-      keywordRelationMatrix1Month[keywordObjectA.alphabetIndex][keywordObjectB.alphabetIndex] =
-        makeRelationBetween2Keywords(keywordObjectA, keywordObjectB, huffPostData, timeUnit);
+      const relationInMonth: number
+        = makeRelationBetween2Keywords(keywordObjectA, keywordObjectB, huffPostData, timeUnit);
+      if (relationInMonth > minimumRelation) {
+        keywordRelationMatrix1Month[keywordObjectA.alphabetIndex][keywordObjectB.alphabetIndex] =
+          relationInMonth;
+      }
     })
   });
 });
@@ -78,6 +111,12 @@ function makeRelationBetween2Keywords(
   const fMeasureAB = getFMeasureBetween2Words(keywordObjectA, keywordObjectB, innerHuffPostData, yearMonth);
   const fMeasureBA = getFMeasureBetween2Words(keywordObjectB, keywordObjectA, innerHuffPostData, yearMonth);
   const relation = 1 - getHarmonicMeanBetween2(1 - fMeasureAB, 1 - fMeasureBA);
+  // if (keywordObjectA.alphabetIndex === 0 && keywordObjectB.alphabetIndex === 0) {
+  //   console.log('fMeasureAB', fMeasureAB);
+  //   console.log('fMeasureBA', fMeasureBA);
+  //   console.log('relation', relation);
+  //   console.log('yearMonth', yearMonth)
+  // }
   return relation;
 }
 
@@ -127,6 +166,13 @@ function getFMeasureBetween2Words(
   const recallAB: number = tpAB / tpfpAB;
   const precisionAB: number = tpAB / tpfnAB;
   const fMeasureAB: number = getHarmonicMeanBetween2(precisionAB, recallAB);
+  // if (keywordObjectA.alphabetIndex === 0 && keywordObjectB.alphabetIndex === 0) {
+  //   console.log('tpfpAB', tpfpAB)
+  //   console.log('tpAB', tpAB)
+  //   console.log('tpfnAB', tpfnAB)
+  //   console.log('recallAB', recallAB)
+  //   console.log('precisionAB', precisionAB)
+  // }
 
   return fMeasureAB;
 }
@@ -146,8 +192,8 @@ function getNumberOfRetrievedPostsIncludingKeywords(
     if (yearMonth === getYearMonthFromStringDate(huffPostDatum.date) || yearMonth === null) {
       let numberOfTrues: number = 0;
       huffPostDatum.keywordObjects.forEach(keywordObject => {
-        if (searchingKewords.includes(keywordObject.keyword)) {
-          numberOfTrues++;
+        for (const searchingKeword of searchingKewords) {
+          if (searchingKeword === keywordObject.keyword) { numberOfTrues++; }
         }
       });
       if (numberOfTrues === searchingKewords.length) { numberOfRetrievedPostsIncludingKeyword++; }
