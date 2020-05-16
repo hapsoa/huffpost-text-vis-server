@@ -13,10 +13,13 @@ export interface InvertedIndex {
   [keywordInDictionary: string]: number[];
 }
 
+export interface KeywordObject {
+  keyword: string;
+  frequency: number;
+  weight: number;
+  orderIndex: number; // alphabet order index
+}
+
 export interface KeywordObjectDict {
-  [keyword: string]: {
-    keyword: string;
-    weight: number;
-    orderIndex: number; // alphabet order index
-  }
+  [keyword: string]: KeywordObject;
 }

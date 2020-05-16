@@ -12,12 +12,14 @@ const keywordObjectDict: KeywordObjectDict = {};
 huffPostData.forEach(huffPostDatum => {
   huffPostDatum.keywordObjects.forEach(keywordObject => {
     if (keywordObjectDict.hasOwnProperty(keywordObject.keyword)) {
+      keywordObjectDict[keywordObject.keyword].frequency += 1;
       keywordObjectDict[keywordObject.keyword].weight += keywordObject.weight;
     } else {
       keywordObjectDict[keywordObject.keyword] = {
         keyword: keywordObject.keyword,
+        frequency: 1,
         weight: keywordObject.weight,
-        orderIndex: 0
+        orderIndex: -1
       }
     }
   });
