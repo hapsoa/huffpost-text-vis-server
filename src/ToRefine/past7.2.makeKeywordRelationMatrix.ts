@@ -1,3 +1,5 @@
+// very slow performance code
+
 import fs = require('fs');
 import { KeywordObjectDict, HuffPostDatum, KeywordObject, AlphabetIndexDictAboutKeyword } from './refiningInterfaces';
 import _ = require('lodash');
