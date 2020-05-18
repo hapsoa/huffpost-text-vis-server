@@ -1,3 +1,5 @@
+# NLTK NER can only be used in upper case.
+
 from nltk import word_tokenize, pos_tag, ne_chunk
 import nltk
 # nltk.download('maxent_ne_chunker')

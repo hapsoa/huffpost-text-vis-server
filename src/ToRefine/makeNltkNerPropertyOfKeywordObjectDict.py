@@ -1,3 +1,5 @@
+# It can be done well in Upper case. I want lowercase.
+
 import json
 import codecs
 from nltk.tokenize import sent_tokenize
