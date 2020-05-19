@@ -1,12 +1,12 @@
 export interface HuffPostDatum {
-  url: string,
-  category: string,
-  date: string,
-  dateIndex: number,
-  title: string,
-  subtitle: string,
-  content: string,
-  keywordObjects: { keyword: string, weight: number }[]
+  url: string;
+  category: string;
+  date: string;
+  dateIndex: number;
+  title: string;
+  subtitle: string;
+  content: string;
+  keywordObjects: { keyword: string, weight: number }[];
 }
 
 export interface InvertedIndex {
@@ -18,6 +18,7 @@ export interface KeywordObject {
   frequency: number;
   weight: number;
   alphabetIndex: number; // alphabet order index
+  ner: string;
 }
 
 export interface KeywordObjectDict {

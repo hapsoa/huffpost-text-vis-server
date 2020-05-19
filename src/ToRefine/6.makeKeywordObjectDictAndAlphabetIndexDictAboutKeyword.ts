@@ -52,7 +52,8 @@ huffPostData.forEach(huffPostDatum => {
         keyword: keywordObject.keyword,
         frequency: 1,
         weight: keywordObject.weight,
-        alphabetIndex: -1
+        alphabetIndex: -1,
+        ner: ''
       }
     }
 
@@ -68,7 +69,8 @@ huffPostData.forEach(huffPostDatum => {
         keyword: keywordObject.keyword,
         frequency: 1,
         weight: keywordObject.weight,
-        alphabetIndex: -1
+        alphabetIndex: -1,
+        ner: ''
       }
     }
   });
