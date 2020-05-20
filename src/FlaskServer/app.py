@@ -10,8 +10,13 @@ app = Flask(__name__)
 cors = CORS(app)
 
 # test files
+# timeDictAboutKeywordObjectDictFilePath = '../../lda-ner-test-data/timeDictAboutKeywordObjectDictIncludingNerForTest.json'
+
+# real files
+timeDictAboutKeywordObjectDictFilePath = '../../lda-ner-result-data/timeDictAboutKeywordObjectDictIncludingNer.json'
+
 timeDictAboutKeywordObjectDict = json.load(codecs.open(
-    '../../test-data/timeDictAboutKeywordObjectDictIncludingNerForTest.json', 'r', 'utf-8-sig'))
+    timeDictAboutKeywordObjectDictFilePath, 'r', 'utf-8-sig'))
 
 
 @app.route('/', methods=['POST'])

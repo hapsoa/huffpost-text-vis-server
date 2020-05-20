@@ -5,6 +5,7 @@ from nltk.tokenize import word_tokenize
 from Giveme5W1H.extractor.document import Document
 from Giveme5W1H.extractor.extractor import MasterExtractor
 from nltk.stem import WordNetLemmatizer
+import socket
 
 # read huffPostData.json
 # test file path
@@ -21,6 +22,8 @@ extractor = MasterExtractor()
 wordNetLemmatizer = WordNetLemmatizer()
 
 errorIndexes = []
+
+print('start')
 
 # for each keyword,
 # make 5w1h
@@ -51,6 +54,12 @@ for (i, huffPostDatum) in enumerate(huffPostData):
                         huffPostDatum['keywords'].append({
                             'keyword': lemmatizedWord, 'fivew1h': fivew1h})
 
+    except socket.timeout as err:
+        print('socket.timeout', err)
+        errorIndexes.append(i)
+    except socket.error as err:
+        print('socket.error', err)
+        errorIndexes.append(i)
     except Exception as ex:  # 에러 종류
         print('에러가 발생 했습니다', ex)  # ex는 발생한 에러의 이름을 받아오는 변수
         errorIndexes.append(i)

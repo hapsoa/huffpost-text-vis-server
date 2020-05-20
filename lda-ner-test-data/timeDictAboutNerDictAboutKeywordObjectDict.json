@@ -1,0 +1,209 @@
+{
+  "2019-04": {
+    "PERSON": {
+      "zelenskiy": {
+        "keyword": "zelenskiy",
+        "frequency": 1,
+        "weight": 0.0176771,
+        "alphabetIndex": 26,
+        "ner": "PERSON"
+      },
+      "poroshenko": {
+        "keyword": "poroshenko",
+        "frequency": 1,
+        "weight": 0.016414443,
+        "alphabetIndex": 12,
+        "ner": "PERSON"
+      },
+      "stronach": {
+        "keyword": "stronach",
+        "frequency": 1,
+        "weight": 0.01128674,
+        "alphabetIndex": 18,
+        "ner": "PERSON"
+      },
+      "brexit": {
+        "keyword": "brexit",
+        "frequency": 1,
+        "weight": 0.015476481,
+        "alphabetIndex": 2,
+        "ner": "PERSON"
+      }
+    },
+    "IN": {
+      "with": {
+        "keyword": "with",
+        "frequency": 2,
+        "weight": 0.023413075999999998,
+        "alphabetIndex": 25,
+        "ner": "IN"
+      },
+      "that": {
+        "keyword": "that",
+        "frequency": 1,
+        "weight": 0.010101156,
+        "alphabetIndex": 19,
+        "ner": "IN"
+      },
+      "from": {
+        "keyword": "from",
+        "frequency": 1,
+        "weight": 0.008333442,
+        "alphabetIndex": 7,
+        "ner": "IN"
+      }
+    },
+    "NN": {
+      "election": {
+        "keyword": "election",
+        "frequency": 1,
+        "weight": 0.012626469,
+        "alphabetIndex": 6,
+        "ner": "NN"
+      },
+      "vote": {
+        "keyword": "vote",
+        "frequency": 2,
+        "weight": 0.026768144,
+        "alphabetIndex": 23,
+        "ner": "NN"
+      },
+      "president": {
+        "keyword": "president",
+        "frequency": 1,
+        "weight": 0.008838499,
+        "alphabetIndex": 13,
+        "ner": "NN"
+      },
+      "runoff": {
+        "keyword": "runoff",
+        "frequency": 1,
+        "weight": 0.0075758416,
+        "alphabetIndex": 15,
+        "ner": "NN"
+      },
+      "horse": {
+        "keyword": "horse",
+        "frequency": 1,
+        "weight": 0.024830945,
+        "alphabetIndex": 9,
+        "ner": "NN"
+      },
+      "death": {
+        "keyword": "death",
+        "frequency": 1,
+        "weight": 0.018058838,
+        "alphabetIndex": 5,
+        "ner": "NN"
+      },
+      "sport": {
+        "keyword": "sport",
+        "frequency": 1,
+        "weight": 0.013544105,
+        "alphabetIndex": 17,
+        "ner": "NN"
+      },
+      "toll": {
+        "keyword": "toll",
+        "frequency": 1,
+        "weight": 0.01128674,
+        "alphabetIndex": 21,
+        "ner": "NN"
+      },
+      "deal": {
+        "keyword": "deal",
+        "frequency": 1,
+        "weight": 0.015476483,
+        "alphabetIndex": 4,
+        "ner": "NN"
+      },
+      "motion": {
+        "keyword": "motion",
+        "frequency": 1,
+        "weight": 0.014285975,
+        "alphabetIndex": 11,
+        "ner": "NN"
+      },
+      "minister": {
+        "keyword": "minister",
+        "frequency": 1,
+        "weight": 0.009523949,
+        "alphabetIndex": 10,
+        "ner": "NN"
+      }
+    },
+    "VB": {
+      "have": {
+        "keyword": "have",
+        "frequency": 2,
+        "weight": 0.025902629,
+        "alphabetIndex": 8,
+        "ner": "VB"
+      }
+    },
+    "GPE": {
+      "ukraine": {
+        "keyword": "ukraine",
+        "frequency": 1,
+        "weight": 0.008838499,
+        "alphabetIndex": 22,
+        "ner": "GPE"
+      },
+      "anita": {
+        "keyword": "anita",
+        "frequency": 1,
+        "weight": 0.015801473,
+        "alphabetIndex": 1,
+        "ner": "GPE"
+      },
+      "santa": {
+        "keyword": "santa",
+        "frequency": 1,
+        "weight": 0.015801473,
+        "alphabetIndex": 16,
+        "ner": "GPE"
+      },
+      "angeles": {
+        "keyword": "angeles",
+        "frequency": 1,
+        "weight": 0.013544105,
+        "alphabetIndex": 0,
+        "ner": "GPE"
+      }
+    },
+    "DATE": {
+      "race": {
+        "keyword": "race",
+        "frequency": 1,
+        "weight": 0.01128674,
+        "alphabetIndex": 14,
+        "ner": "DATE"
+      },
+      "this": {
+        "keyword": "this",
+        "frequency": 1,
+        "weight": 0.013095466,
+        "alphabetIndex": 20,
+        "ner": "DATE"
+      }
+    },
+    "MD": {
+      "will": {
+        "keyword": "will",
+        "frequency": 1,
+        "weight": 0.0119049605,
+        "alphabetIndex": 24,
+        "ner": "MD"
+      }
+    },
+    "JJ": {
+      "common": {
+        "keyword": "common",
+        "frequency": 1,
+        "weight": 0.008333442,
+        "alphabetIndex": 3,
+        "ner": "JJ"
+      }
+    }
+  }
+}
