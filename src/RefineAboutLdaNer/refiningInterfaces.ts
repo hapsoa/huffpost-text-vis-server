@@ -33,6 +33,14 @@ export interface TimeDictAboutKeywordRelationMatrix {
   [time: string]: number[][];
 }
 
+export interface Fivew1hDictAboutKeywordObjectDict {
+  [fivew1h: string]: KeywordObjectDict
+}
+
+export interface TimeDictAbout5w1hDictAboutKeywordObjectDict {
+  [time: string]: Fivew1hDictAboutKeywordObjectDict
+}
+
 export interface AlphabetIndexDictAboutKeyword {
   [alphabetIndex: number]: string;
 }

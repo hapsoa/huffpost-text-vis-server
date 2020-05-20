@@ -22,3 +22,5 @@ yarn-error.log*
 
 # custom
 result-data
+lda-ner-result-data
+5w1h-result-data
