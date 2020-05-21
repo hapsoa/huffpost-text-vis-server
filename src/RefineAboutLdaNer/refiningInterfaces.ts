@@ -6,7 +6,7 @@ export interface HuffPostDatum {
   title: string;
   subtitle: string;
   content: string;
-  keywordObjects: { keyword: string, weight: number }[];
+  keywordObjects: { keyword: string; weight: number }[];
 }
 
 export interface InvertedIndex {
@@ -33,12 +33,12 @@ export interface TimeDictAboutKeywordRelationMatrix {
   [time: string]: number[][];
 }
 
-export interface Fivew1hDictAboutKeywordObjectDict {
-  [fivew1h: string]: KeywordObjectDict
+export interface NerDictAboutKeywordObjectDict {
+  [fivew1h: string]: KeywordObjectDict;
 }
 
-export interface TimeDictAbout5w1hDictAboutKeywordObjectDict {
-  [time: string]: Fivew1hDictAboutKeywordObjectDict
+export interface TimeDictAboutNerDictAboutKeywordObjectDict {
+  [time: string]: NerDictAboutKeywordObjectDict;
 }
 
 export interface AlphabetIndexDictAboutKeyword {

@@ -30,16 +30,21 @@ print('start')
 # make keyword from 5w1h
 for (i, huffPostDatum) in enumerate(huffPostData):
     try:
-        print(i, 'th index start')
 
         huffPostDatum['keywords'] = []
 
+        print(i, 'th index start')
         doc = Document(huffPostDatum['title'], huffPostDatum['subtitle'],
                        huffPostDatum['content'], huffPostDatum['date'])
         # doc = Document.from_text(huffPostDatum['content'], huffPostDatum['date'])
+        print(i, 'extractor.parse(doc) start')
         doc = extractor.parse(doc)
 
+        print(i, 'doc.get_answers() start')
+
         answers = doc.get_answers()
+
+        print(i, 'for start')
 
         for (fivew1h, answer) in answers.items():
             if len(answer) != 0:
