@@ -33,19 +33,19 @@ def post():
     })
 
 
-@app.route('/time-dict-about-keyword-object-dict', methods=['GET'])
-def getTimeDictAboutKeywordObjectDict():
-    return jsonify(timeDictAboutKeywordObjectDict)
+# @app.route('/time-dict-about-keyword-object-dict', methods=['GET'])
+# def getTimeDictAboutKeywordObjectDict():
+#     return jsonify(timeDictAboutKeywordObjectDict)
 
 
-@app.route('/keyword-relation-matrix-total-time', methods=['GET'])
-def getKeywordRelationMatrixTotalTime():
-    return jsonify(keywordRelationMatrixTotalTime)
+# @app.route('/keyword-relation-matrix-total-time', methods=['GET'])
+# def getKeywordRelationMatrixTotalTime():
+#     return jsonify(keywordRelationMatrixTotalTime)
 
 
-@app.route('/alphabet-index-dict-about-keyword', methods=['GET'])
-def getAlphabetIndexDictAboutKeyword():
-    return jsonify(alphabetIndexDictAboutKeyword)
+# @app.route('/alphabet-index-dict-about-keyword', methods=['GET'])
+# def getAlphabetIndexDictAboutKeyword():
+#     return jsonify(alphabetIndexDictAboutKeyword)
 
 
 if __name__ == '__main__':

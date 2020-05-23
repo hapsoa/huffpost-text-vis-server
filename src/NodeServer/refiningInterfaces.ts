@@ -38,13 +38,17 @@ export interface TimeDictAboutNerDictAboutKeywordObjectDict {
 }
 
 export interface AlphabetIndexDictAboutKeyword {
-  [alphabetIndex: number]: string;
+  [alphabetIndex: string]: string;
 }
 
 export interface KeywordRelation {
-  [keywordIndex: number]: number; // frequency
+  [keywordIndex: number]: number;
 }
 
 export interface TimeDictAboutKeywordRelationMatrix {
   [yearMonth: string]: KeywordRelation[];
+}
+
+export interface QueryKeyword {
+  queryKeyword: string;
 }
