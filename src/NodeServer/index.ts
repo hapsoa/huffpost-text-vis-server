@@ -6,7 +6,7 @@ import {
   getTimeDictAboutKeywordObjectDict,
   getRelatedKeywordsInTotalTime,
 } from "./processFunctions";
-import { QueryKeyword } from "./refiningInterfaces";
+import { QueryKeyword, KeywordDict } from "./refiningInterfaces";
 const app = express();
 
 app.use(cors());
@@ -38,7 +38,7 @@ app.post(
   ) => {
     console.log("related-keywords req!", req.body.queryKeyword);
 
-    const relatedKeywords: string[] = getRelatedKeywordsInTotalTime(
+    const relatedKeywords: KeywordDict = getRelatedKeywordsInTotalTime(
       req.body.queryKeyword
     );
     res.send(relatedKeywords);

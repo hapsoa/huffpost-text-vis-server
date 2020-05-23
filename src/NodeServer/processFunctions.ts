@@ -2,6 +2,7 @@ import {
   KeywordRelation,
   AlphabetIndexDictAboutKeyword,
   KeywordObjectDict,
+  KeywordDict,
 } from "./refiningInterfaces";
 import _ = require("lodash");
 
@@ -29,20 +30,21 @@ export function getTimeDictAboutKeywordObjectDict() {
   return timeDictAboutKeywordObjectDict;
 }
 
-export function getRelatedKeywordsInTotalTime(queryKeyword: string): string[] {
+export function getRelatedKeywordsInTotalTime(
+  queryKeyword: string
+): KeywordDict {
   const queryKeywordAlphabetIndex: number =
     keywordObjectDictTotalTime[queryKeyword].alphabetIndex;
 
   // find related keywords of query_keyword
-  const keywordRelation =
+  const keywordRelation: KeywordRelation =
     keywordRelationMatrixTotalTime[queryKeywordAlphabetIndex];
 
-  const relatedKeywords = _.map(
-    keywordRelation,
-    (frequency, keywordAlphabetIndex) => {
-      return alphabetIndexDictAboutKeyword[keywordAlphabetIndex];
-    }
-  );
+  const relatedKeywordDict: KeywordDict = {};
+  _.forEach(keywordRelation, (frequency, keywordAlphabetIndex) => {
+    const keyword = alphabetIndexDictAboutKeyword[keywordAlphabetIndex];
+    relatedKeywordDict[keyword] = keyword;
+  });
 
-  return relatedKeywords;
+  return relatedKeywordDict;
 }
