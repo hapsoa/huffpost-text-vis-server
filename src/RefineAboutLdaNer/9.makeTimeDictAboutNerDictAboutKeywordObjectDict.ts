@@ -7,16 +7,16 @@ import fs = require("fs");
 
 // read timeDictAboutKeywordObjectDictIncluding5w1h.json
 // test file path
-const timeDictAboutKeywordObjectDictIncludingNerFilePath =
-  "../../lda-ner-test-data/timeDictAboutKeywordObjectDictIncludingNerForTest.json";
-const writingTimeDictAboutNerDictAboutKeywordObjectDictFilePath =
-  "../../lda-ner-test-data/timeDictAboutNerDictAboutKeywordObjectDict.json";
+// const timeDictAboutKeywordObjectDictIncludingNerFilePath =
+//   "../../lda-ner-test-data/timeDictAboutKeywordObjectDictIncludingNerForTest.json";
+// const writingTimeDictAboutNerDictAboutKeywordObjectDictFilePath =
+//   "../../lda-ner-test-data/timeDictAboutNerDictAboutKeywordObjectDict.json";
 
 // real file path
-// const timeDictAboutKeywordObjectDictIncludingNerFilePath =
-//   "../../lda-ner-result-data/timeDictAboutKeywordObjectDictIncludingNer.json";
-// const writingTimeDictAboutNerDictAboutKeywordObjectDictFilePath =
-//   "../../lda-ner-result-data/timeDictAboutNerDictAboutKeywordObjectDict.json";
+const timeDictAboutKeywordObjectDictIncludingNerFilePath =
+  "../../lda-ner-result-data/timeDictAboutKeywordObjectDictIncludingNer.json";
+const writingTimeDictAboutNerDictAboutKeywordObjectDictFilePath =
+  "../../lda-ner-result-data/timeDictAboutNerDictAboutKeywordObjectDict.json";
 
 const timeDictAboutKeywordObjectDict: TimeDictAboutKeywordObjectDict = require(timeDictAboutKeywordObjectDictIncludingNerFilePath);
 

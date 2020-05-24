@@ -26,15 +26,15 @@ import {
 
 // for real file path
 const huffPostDataJsonPath: string =
-  "../../result-data/huffPostDataIncludingKeywords.json";
+  "../../lda-ner-result-data/huffPostDataIncludingKeywords.json";
 const keywordObjectDictJsonPath: string =
-  "../../result-data/keywordObjectDictTotalTime.json";
+  "../../lda-ner-result-data/keywordObjectDictTotalTime.json";
 const alphabetIndexDictAboutKeywordFilePath =
-  "../../result-data/alphabetIndexDictAboutKeyword.json";
+  "../../lda-ner-result-data/alphabetIndexDictAboutKeyword.json";
 const writingKeywordRelationMatrixTotalTimeFilePath =
-  "../../result-data/keywordRelationMatrixTotalTime.json";
+  "../../lda-ner-result-data/keywordRelationMatrixTotalTime.json";
 const writingTimeDictAboutKeywordRelationMatrixFilePath: string =
-  "../../result-data/timeDictAboutKeywordRelationMatrix.json";
+  "../../lda-ner-result-data/timeDictAboutKeywordRelationMatrix.json";
 
 const huffPostData: HuffPostDatum[] = require(huffPostDataJsonPath);
 const keywordObjectDict: KeywordObjectDict = require(keywordObjectDictJsonPath);

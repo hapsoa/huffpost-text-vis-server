@@ -19,6 +19,7 @@ export interface KeywordObject {
   weight: number;
   alphabetIndex: number; // alphabet order index
   ner: string;
+  yearMonth?: string;
 }
 
 export interface KeywordObjectDict {
@@ -51,4 +52,20 @@ export interface TimeDictAboutKeywordRelationMatrix {
 
 export interface QueryKeyword {
   queryKeyword: string;
+}
+
+export interface RelatedKeywordObject {
+  keyword: string;
+  relatedFrequency: number;
+  weight: number;
+  alphabetIndex: number; // alphabet order index
+  ner: string;
+}
+
+export interface RelatedKeywordObjectDict {
+  [relatedKeyword: string]: RelatedKeywordObject;
+}
+
+export interface TimeDictAboutRelatedKeywordObjectDict {
+  [yearMonth: string]: RelatedKeywordObjectDict;
 }

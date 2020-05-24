@@ -19,12 +19,12 @@ import en_core_web_sm  # python -m spacy download en_core_web_sm
 # writingTimeDictAboutKeywordObjectDictIncludingNerPath = '../../test-data/timeDictAboutKeywordObjectDictIncludingNerForTest.json'
 
 # real file path
-keywordObjectDictTotalTimeFilePath = '../../result-data/keywordObjectDictTotalTime.json'
-timeDictAboutKeywordObjectDictFilePath = '../../result-data/timeDictAboutKeywordObjectDict.json'
-invertedIndexFilePath = '../../result-data/invertedIndex.json'
-combinedLemmatizedTextFilePath = '../../result-data/combinedLemmatizedTexts.json'
-writingKeywordObjectDictIncludingNerPath = '../../result-data/keywordObjectDictIncludingNer.json'
-writingTimeDictAboutKeywordObjectDictIncludingNerPath = '../../result-data/timeDictAboutKeywordObjectDictIncludingNer.json'
+keywordObjectDictTotalTimeFilePath = '../../lda-ner-result-data/keywordObjectDictTotalTime.json'
+timeDictAboutKeywordObjectDictFilePath = '../../lda-ner-result-data/timeDictAboutKeywordObjectDict.json'
+invertedIndexFilePath = '../../lda-ner-result-data/invertedIndex.json'
+combinedLemmatizedTextFilePath = '../../lda-ner-result-data/combinedLemmatizedTexts.json'
+writingKeywordObjectDictIncludingNerPath = '../../lda-ner-result-data/keywordObjectDictIncludingNer.json'
+writingTimeDictAboutKeywordObjectDictIncludingNerPath = '../../lda-ner-result-data/timeDictAboutKeywordObjectDictIncludingNer.json'
 
 # read data
 keywordObjectDictTotalTime = json.load(codecs.open(

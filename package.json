@@ -24,6 +24,7 @@
   },
   "scripts": {
     "node-server-start": "npx tsc && node node-dist",
+    "flask-server-start": "cd src/FlaskServer && python ./app.py",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

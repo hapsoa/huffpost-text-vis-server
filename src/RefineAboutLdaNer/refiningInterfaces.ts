@@ -19,6 +19,7 @@ export interface KeywordObject {
   weight: number;
   alphabetIndex: number; // alphabet order index
   ner: string;
+  yearMonth?: string;
 }
 
 export interface KeywordObjectDict {

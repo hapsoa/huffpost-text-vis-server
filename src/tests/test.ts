@@ -1,6 +1,18 @@
-console.log('start test.ts process');
+import _ = require("lodash");
 
-// slow read
-const bigData = require('../../result-data/keywordRelationMatrixTotalTime.json');
+const testData = { 1: 1, 3: 5, 5: 3 };
 
-console.log('bigData[10][10]', bigData[10][10]);
+const result = _.chain(testData)
+  .map((frequency, alphbetIndex) => {
+    return {
+      alphbetIndex,
+      frequency,
+    };
+  })
+  .sortBy((datum) => -datum.frequency)
+  .splice(0, 2)
+  .value();
+
+// const result = _.sortBy(testData);
+
+console.log("result", result);

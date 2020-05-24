@@ -5,8 +5,14 @@ import {
   showTestData,
   getTimeDictAboutKeywordObjectDict,
   getRelatedKeywordsInTotalTime,
+  getTimeDictAboutRelatedKeywordObjectDictInEachTime,
 } from "./processFunctions";
-import { QueryKeyword, KeywordDict } from "./refiningInterfaces";
+import {
+  QueryKeyword,
+  RelatedKeywordObject,
+  RelatedKeywordObjectDict,
+  TimeDictAboutRelatedKeywordObjectDict,
+} from "./refiningInterfaces";
 const app = express();
 
 app.use(cors());
@@ -38,10 +44,18 @@ app.post(
   ) => {
     console.log("related-keywords req!", req.body.queryKeyword);
 
-    const relatedKeywords: KeywordDict = getRelatedKeywordsInTotalTime(
+    const relatedKeywordObjectDictInTotalTime: RelatedKeywordObjectDict = getRelatedKeywordsInTotalTime(
       req.body.queryKeyword
     );
-    res.send(relatedKeywords);
+
+    const timeDictAboutRelatedKeywordObjectDict: TimeDictAboutRelatedKeywordObjectDict = getTimeDictAboutRelatedKeywordObjectDictInEachTime(
+      req.body.queryKeyword
+    );
+
+    res.send({
+      relatedKeywordObjectDictInTotalTime,
+      timeDictAboutRelatedKeywordObjectDict,
+    });
   }
 );
 

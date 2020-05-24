@@ -2,9 +2,16 @@ import {
   KeywordRelation,
   AlphabetIndexDictAboutKeyword,
   KeywordObjectDict,
-  KeywordDict,
+  RelatedKeywordObject,
+  RelatedKeywordObjectDict,
+  KeywordObject,
+  TimeDictAboutKeywordRelationMatrix,
+  TimeDictAboutKeywordObjectDict,
+  HuffPostDatum,
+  TimeDictAboutRelatedKeywordObjectDict,
 } from "./refiningInterfaces";
 import _ = require("lodash");
+import { makeNerTo5w1h, makeYearMonthsFromHuffPostData } from "./utils";
 
 const testData = require("../5w1h-test-data/rawHuffPostData.json");
 
@@ -14,13 +21,18 @@ const timeDictAboutKeywordObjectDictFilePath =
   "../lda-ner-result-data/timeDictAboutKeywordObjectDictIncludingNer.json";
 const keywordRelationMatrixTotalTimeFilePath =
   "../lda-ner-result-data/keywordRelationMatrixTotalTime.json";
+const timeDictAboutKeywordRelationMatrixFilePath =
+  "../lda-ner-result-data/timeDictAboutKeywordRelationMatrix.json";
 const alphabetIndexDictAboutKeywordFilePath =
   "../lda-ner-result-data/alphabetIndexDictAboutKeyword.json";
+const huffPostDataFilePath = "../lda-ner-result-data/rawHuffPostData.json";
 
-const timeDictAboutKeywordObjectDict: KeywordRelation[] = require(timeDictAboutKeywordObjectDictFilePath);
+const timeDictAboutKeywordObjectDict: TimeDictAboutKeywordObjectDict = require(timeDictAboutKeywordObjectDictFilePath);
 const keywordRelationMatrixTotalTime: KeywordRelation[] = require(keywordRelationMatrixTotalTimeFilePath);
 const alphabetIndexDictAboutKeyword: AlphabetIndexDictAboutKeyword = require(alphabetIndexDictAboutKeywordFilePath);
 const keywordObjectDictTotalTime: KeywordObjectDict = require(keywordObjectDictTotalTimeFilePath);
+const timeDictAboutKeywordRelationMatrix: TimeDictAboutKeywordRelationMatrix = require(timeDictAboutKeywordRelationMatrixFilePath);
+const huffPostData: HuffPostDatum[] = require(huffPostDataFilePath);
 
 export function showTestData() {
   return testData;
@@ -30,21 +42,163 @@ export function getTimeDictAboutKeywordObjectDict() {
   return timeDictAboutKeywordObjectDict;
 }
 
+// TODO get relatedKeywords each time differently!
 export function getRelatedKeywordsInTotalTime(
   queryKeyword: string
-): KeywordDict {
-  const queryKeywordAlphabetIndex: number =
-    keywordObjectDictTotalTime[queryKeyword].alphabetIndex;
+): RelatedKeywordObjectDict {
+  const queryKeywordObject = keywordObjectDictTotalTime[queryKeyword];
+  const queryKeywordAlphabetIndex: number = queryKeywordObject.alphabetIndex;
 
   // find related keywords of query_keyword
   const keywordRelation: KeywordRelation =
     keywordRelationMatrixTotalTime[queryKeywordAlphabetIndex];
 
-  const relatedKeywordDict: KeywordDict = {};
-  _.forEach(keywordRelation, (frequency, keywordAlphabetIndex) => {
-    const keyword = alphabetIndexDictAboutKeyword[keywordAlphabetIndex];
-    relatedKeywordDict[keyword] = keyword;
+  const relatedKeywordObjects: RelatedKeywordObject[] = _.map(
+    keywordRelation,
+    (frequency, keywordAlphabetIndex) => {
+      const keyword = alphabetIndexDictAboutKeyword[keywordAlphabetIndex];
+      const keywordObject = keywordObjectDictTotalTime[keyword];
+      return {
+        keyword,
+        alphabetIndex: keywordObject.alphabetIndex,
+        relatedFrequency: frequency,
+        ner: keywordObject.ner,
+        weight: keywordObject.weight,
+      };
+    }
+  );
+
+  // get top frequent keywordObject at each 5w1h
+  const fivew1hs: string[] = ["who", "where", "when", "what", "how", "other"];
+
+  const topRelatedKeywordObjectDict: RelatedKeywordObjectDict = {};
+  _.forEach(fivew1hs, (fivew1h) => {
+    const topRelatedKeywordObject = _.chain(relatedKeywordObjects)
+      .filter(
+        (relatedKeywordObject) =>
+          makeNerTo5w1h(relatedKeywordObject.ner) === fivew1h
+      )
+      .maxBy(
+        (filteredRelatedKeywordObject) =>
+          filteredRelatedKeywordObject.relatedFrequency
+      )
+      .value();
+
+    if (topRelatedKeywordObject) {
+      topRelatedKeywordObjectDict[
+        topRelatedKeywordObject.keyword
+      ] = topRelatedKeywordObject;
+    }
   });
 
-  return relatedKeywordDict;
+  return topRelatedKeywordObjectDict;
+}
+
+export function getTimeDictAboutRelatedKeywordObjectDictInEachTime(
+  queryKeyword: string
+): TimeDictAboutRelatedKeywordObjectDict {
+  const queryKeywordObject = keywordObjectDictTotalTime[queryKeyword];
+  const queryKeywordAlphabetIndex: number = queryKeywordObject.alphabetIndex;
+
+  const yearMonths = makeYearMonthsFromHuffPostData(huffPostData);
+  // get top frequent keywordObject at each 5w1h
+  const fivew1hs: string[] = ["who", "where", "when", "what", "how", "other"];
+
+  const timeDictAboutRelatedKeywordObjectDict: TimeDictAboutRelatedKeywordObjectDict = {};
+
+  _.forEach(yearMonths, (yearMonth) => {
+    // find related keywords of query_keyword
+    const keywordRelation: KeywordRelation =
+      timeDictAboutKeywordRelationMatrix[yearMonth][queryKeywordAlphabetIndex];
+    keywordRelationMatrixTotalTime[queryKeywordAlphabetIndex];
+    const relatedKeywordObjects: RelatedKeywordObject[] = _.map(
+      keywordRelation,
+      (frequency, keywordAlphabetIndex) => {
+        const keyword = alphabetIndexDictAboutKeyword[keywordAlphabetIndex];
+        const keywordObject = keywordObjectDictTotalTime[keyword];
+        return {
+          keyword,
+          alphabetIndex: keywordObject.alphabetIndex,
+          relatedFrequency: frequency,
+          ner: keywordObject.ner,
+          weight: keywordObject.weight,
+          yearMonth,
+        };
+      }
+    );
+
+    const topRelatedKeywordObjectDict: RelatedKeywordObjectDict = {};
+    _.forEach(fivew1hs, (fivew1h) => {
+      const topRelatedKeywordObject = _.chain(relatedKeywordObjects)
+        .filter(
+          (relatedKeywordObject) =>
+            makeNerTo5w1h(relatedKeywordObject.ner) === fivew1h
+        )
+        .maxBy(
+          (filteredRelatedKeywordObject) =>
+            filteredRelatedKeywordObject.relatedFrequency
+        )
+        .value();
+
+      if (topRelatedKeywordObject) {
+        topRelatedKeywordObjectDict[
+          topRelatedKeywordObject.keyword
+        ] = topRelatedKeywordObject;
+      }
+    });
+
+    timeDictAboutRelatedKeywordObjectDict[
+      yearMonth
+    ] = topRelatedKeywordObjectDict;
+  });
+
+  return timeDictAboutRelatedKeywordObjectDict;
+}
+
+export function getRelatedKeywordsInTime(
+  queryKeywordObject: KeywordObject,
+  yearMonth: string
+): RelatedKeywordObjectDict {
+  const keywordRelation =
+    timeDictAboutKeywordRelationMatrix[yearMonth][
+      queryKeywordObject.alphabetIndex
+    ];
+
+  const relatedKeywordObjects: RelatedKeywordObject[] = _.map(
+    keywordRelation,
+    (frequency, keywordAlphabetIndex) => {
+      const keyword = alphabetIndexDictAboutKeyword[keywordAlphabetIndex];
+      const keywordObject = timeDictAboutKeywordObjectDict[yearMonth][keyword];
+
+      return {
+        keyword: alphabetIndexDictAboutKeyword[keywordAlphabetIndex],
+        alphabetIndex: Number(keywordAlphabetIndex),
+        relatedFrequency: frequency,
+        ner: keywordObject.ner,
+        weight: keywordObject.weight,
+      };
+    }
+  );
+
+  // get top frequent keywordObject at each 5w1h
+  const fivew1hs: string[] = ["who", "where", "when", "what", "how", "other"];
+
+  const topRelatedKeywordObjectDict: RelatedKeywordObjectDict = {};
+  _.forEach(fivew1hs, (fivew1h) => {
+    const topRelatedKeywordObject = _.chain(relatedKeywordObjects)
+      .filter(
+        (relatedKeywordObject) =>
+          makeNerTo5w1h(relatedKeywordObject.ner) === fivew1h
+      )
+      .maxBy(
+        (filteredRelatedKeywordObject) =>
+          filteredRelatedKeywordObject.relatedFrequency
+      )
+      .value();
+    topRelatedKeywordObjectDict[
+      topRelatedKeywordObject.keyword
+    ] = topRelatedKeywordObject;
+  });
+
+  return topRelatedKeywordObjectDict;
 }
