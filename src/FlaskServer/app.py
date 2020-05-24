@@ -5,6 +5,8 @@ from flask import jsonify
 from flask_cors import CORS  # installation command : pip install -U flask-cors
 import json
 import codecs
+import topKDocumentsRetrieval
+
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -32,6 +34,17 @@ def post():
         "hello": "hello"
     })
 
+# get top k documents from query keyword
+@app.route('/top-k-documents', methods=['POST'])
+def getTimeDictAboutKeywordObjectDict():
+    print('yap')
+    queryKeywordObject = request.json
+    print('queryKeywordObject', queryKeywordObject)
+    topKDocumentsRetrieval.getTopKDocuments(queryKeywordObject.queryKeyword)
+
+    return jsonify({
+        "hello": "top-k"
+    })
 
 # @app.route('/time-dict-about-keyword-object-dict', methods=['GET'])
 # def getTimeDictAboutKeywordObjectDict():

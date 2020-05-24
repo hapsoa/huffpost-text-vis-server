@@ -5,7 +5,7 @@ print('common_corpus', common_corpus)  # bag of words format
 print('common_dictionary', common_dictionary)
 
 # query document (BOW format. This can be query keywords)
-query = [(1, 2), (5, 1)]
+query = [(1, 2), (5, 1)]  # [(word index, frequency of the word), ...]
 
 index = MatrixSimilarity(common_corpus, num_best=9,
                          num_features=len(common_dictionary))

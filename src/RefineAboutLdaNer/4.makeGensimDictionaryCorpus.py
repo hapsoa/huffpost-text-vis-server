@@ -57,9 +57,13 @@ dictionary = corpora.Dictionary(tokenizedTexts)
 # store the dictionary, for future reference
 dictionary.save(writingGensimDictionaryFilePath)
 
+# if you want load dictionary
+# corpora.Dictionary.load('../../test-data/gensimDictionary.dict')
+
 # for each text, make vectorOfBOW
 corpus = [dictionary.doc2bow(tokenizedText)
           for tokenizedText in tokenizedTexts]
+
 
 # store corpus to disk, for later use
 corpora.MmCorpus.serialize(writingGensimCorpusFilePath, corpus)

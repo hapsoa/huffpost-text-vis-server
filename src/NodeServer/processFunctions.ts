@@ -34,8 +34,8 @@ const keywordObjectDictTotalTime: KeywordObjectDict = require(keywordObjectDictT
 const timeDictAboutKeywordRelationMatrix: TimeDictAboutKeywordRelationMatrix = require(timeDictAboutKeywordRelationMatrixFilePath);
 const huffPostData: HuffPostDatum[] = require(huffPostDataFilePath);
 
-export function showTestData() {
-  return testData;
+export function getKeywordObjectDictTotalTime() {
+  return keywordObjectDictTotalTime;
 }
 
 export function getTimeDictAboutKeywordObjectDict() {

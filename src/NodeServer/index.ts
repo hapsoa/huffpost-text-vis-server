@@ -2,10 +2,10 @@ import express = require("express");
 import cors = require("cors");
 import bodyParser = require("body-parser");
 import {
-  showTestData,
   getTimeDictAboutKeywordObjectDict,
   getRelatedKeywordsInTotalTime,
   getTimeDictAboutRelatedKeywordObjectDictInEachTime,
+  getKeywordObjectDictTotalTime,
 } from "./processFunctions";
 import {
   QueryKeyword,
@@ -21,11 +21,6 @@ app.use(bodyParser.json());
 
 app.get("/", (req: express.Request, res: express.Response) => {
   res.send("Hello World! Node server");
-});
-
-app.get("/test-data", (req: express.Request, res: express.Response) => {
-  const result = showTestData();
-  res.send(result);
 });
 
 app.get(
@@ -44,15 +39,20 @@ app.post(
   ) => {
     console.log("related-keywords req!", req.body.queryKeyword);
 
+    const queryKeyword: string = req.body.queryKeyword;
+    const keywordObjectDictTotalTime = getKeywordObjectDictTotalTime();
+    const queryKeywordObject = keywordObjectDictTotalTime[queryKeyword];
     const relatedKeywordObjectDictInTotalTime: RelatedKeywordObjectDict = getRelatedKeywordsInTotalTime(
-      req.body.queryKeyword
+      queryKeyword
+    );
+    const timeDictAboutRelatedKeywordObjectDict: TimeDictAboutRelatedKeywordObjectDict = getTimeDictAboutRelatedKeywordObjectDictInEachTime(
+      queryKeyword
     );
 
-    const timeDictAboutRelatedKeywordObjectDict: TimeDictAboutRelatedKeywordObjectDict = getTimeDictAboutRelatedKeywordObjectDictInEachTime(
-      req.body.queryKeyword
-    );
+    // send top k documents. this can be done by flask server.
 
     res.send({
+      queryKeywordObject,
       relatedKeywordObjectDictInTotalTime,
       timeDictAboutRelatedKeywordObjectDict,
     });
