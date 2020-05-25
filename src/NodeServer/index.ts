@@ -6,12 +6,14 @@ import {
   getRelatedKeywordsInTotalTime,
   getTimeDictAboutRelatedKeywordObjectDictInEachTime,
   getKeywordObjectDictTotalTime,
+  getRelatedKeywordsInTime,
 } from "./processFunctions";
 import {
   QueryKeyword,
   RelatedKeywordObject,
   RelatedKeywordObjectDict,
   TimeDictAboutRelatedKeywordObjectDict,
+  KeywordObject,
 } from "./refiningInterfaces";
 const app = express();
 
@@ -31,6 +33,7 @@ app.get(
   }
 );
 
+// by search
 app.post(
   "/related-keywords",
   (
@@ -55,6 +58,29 @@ app.post(
       queryKeywordObject,
       relatedKeywordObjectDictInTotalTime,
       timeDictAboutRelatedKeywordObjectDict,
+    });
+  }
+);
+
+app.post(
+  "/related-keywords-in-time",
+  (
+    req: express.Request<any, any, KeywordObject, any>,
+    res: express.Response
+  ) => {
+    console.log("/related-keywords-in-time req!", req.body);
+
+    const queryKeywordObject: KeywordObject = req.body;
+    const relatedKeywordObjectDictInTotalTime: RelatedKeywordObjectDict = getRelatedKeywordsInTime(
+      queryKeywordObject,
+      queryKeywordObject.yearMonth as string
+    );
+
+    // send top k documents. this can be done by flask server.
+
+    res.send({
+      queryKeywordObject,
+      relatedKeywordObjectDictInTotalTime,
     });
   }
 );

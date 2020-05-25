@@ -42,7 +42,6 @@ export function getTimeDictAboutKeywordObjectDict() {
   return timeDictAboutKeywordObjectDict;
 }
 
-// TODO get relatedKeywords each time differently!
 export function getRelatedKeywordsInTotalTime(
   queryKeyword: string
 ): RelatedKeywordObjectDict {
@@ -195,9 +194,12 @@ export function getRelatedKeywordsInTime(
           filteredRelatedKeywordObject.relatedFrequency
       )
       .value();
-    topRelatedKeywordObjectDict[
-      topRelatedKeywordObject.keyword
-    ] = topRelatedKeywordObject;
+
+    if (topRelatedKeywordObject) {
+      topRelatedKeywordObjectDict[
+        topRelatedKeywordObject.keyword
+      ] = topRelatedKeywordObject;
+    }
   });
 
   return topRelatedKeywordObjectDict;

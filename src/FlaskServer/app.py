@@ -37,28 +37,11 @@ def post():
 # get top k documents from query keyword
 @app.route('/top-k-documents', methods=['POST'])
 def getTimeDictAboutKeywordObjectDict():
-    print('yap')
-    queryKeywordObject = request.json
-    print('queryKeywordObject', queryKeywordObject)
-    topKDocumentsRetrieval.getTopKDocuments(queryKeywordObject.queryKeyword)
+    queryKeywords = request.json
+    topKHuffPostData = topKDocumentsRetrieval.getTopKDocuments(
+        queryKeywords)
 
-    return jsonify({
-        "hello": "top-k"
-    })
-
-# @app.route('/time-dict-about-keyword-object-dict', methods=['GET'])
-# def getTimeDictAboutKeywordObjectDict():
-#     return jsonify(timeDictAboutKeywordObjectDict)
-
-
-# @app.route('/keyword-relation-matrix-total-time', methods=['GET'])
-# def getKeywordRelationMatrixTotalTime():
-#     return jsonify(keywordRelationMatrixTotalTime)
-
-
-# @app.route('/alphabet-index-dict-about-keyword', methods=['GET'])
-# def getAlphabetIndexDictAboutKeyword():
-#     return jsonify(alphabetIndexDictAboutKeyword)
+    return jsonify(topKHuffPostData)
 
 
 if __name__ == '__main__':
