@@ -1,3 +1,5 @@
+export type Fivew1h = "who" | "where" | "when" | "what" | "why" | "how";
+
 export interface HuffPostDatum {
   url: string;
   category: string;
@@ -6,7 +8,7 @@ export interface HuffPostDatum {
   title: string;
   subtitle: string;
   content: string;
-  keywords: { keyword: string, fivew1h: number }[];
+  keywords: { keyword: string; fivew1h: Fivew1h }[];
 }
 
 export interface InvertedIndex {
@@ -16,9 +18,9 @@ export interface InvertedIndex {
 export interface KeywordObject {
   keyword: string;
   frequency: number;
-  weight: number;
   alphabetIndex: number; // alphabet order index
-  ner: string;
+  fivew1h: string;
+  yearMonth?: string;
 }
 
 export interface KeywordObjectDict {
@@ -29,16 +31,20 @@ export interface TimeDictAboutKeywordObjectDict {
   [time: string]: KeywordObjectDict;
 }
 
+export interface KeywordRelation {
+  [keywordIndex: number]: number;
+}
+
 export interface TimeDictAboutKeywordRelationMatrix {
-  [time: string]: number[][];
+  [yearMonth: string]: KeywordRelation[];
 }
 
 export interface Fivew1hDictAboutKeywordObjectDict {
-  [fivew1h: string]: KeywordObjectDict
+  [fivew1h: string]: KeywordObjectDict;
 }
 
 export interface TimeDictAbout5w1hDictAboutKeywordObjectDict {
-  [time: string]: Fivew1hDictAboutKeywordObjectDict
+  [time: string]: Fivew1hDictAboutKeywordObjectDict;
 }
 
 export interface AlphabetIndexDictAboutKeyword {

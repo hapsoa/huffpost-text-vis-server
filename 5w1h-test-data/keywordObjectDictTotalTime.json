@@ -1,0 +1,236 @@
+{
+  "play": {
+    "keyword": "play",
+    "frequency": 1,
+    "alphabetIndex": 25,
+    "fivew1h": "who"
+  },
+  "ukraine": {
+    "keyword": "ukraine",
+    "frequency": 2,
+    "alphabetIndex": 37,
+    "fivew1h": "who"
+  },
+  "president": {
+    "keyword": "president",
+    "frequency": 1,
+    "alphabetIndex": 26,
+    "fivew1h": "who"
+  },
+  "tv": {
+    "keyword": "tv",
+    "frequency": 1,
+    "alphabetIndex": 34,
+    "fivew1h": "who"
+  },
+  "election": {
+    "keyword": "election",
+    "frequency": 1,
+    "alphabetIndex": 13,
+    "fivew1h": "what"
+  },
+  "showing": {
+    "keyword": "showing",
+    "frequency": 2,
+    "alphabetIndex": 28,
+    "fivew1h": "how"
+  },
+  "longing": {
+    "keyword": "longing",
+    "frequency": 1,
+    "alphabetIndex": 17,
+    "fivew1h": "how"
+  },
+  "monday": {
+    "keyword": "monday",
+    "frequency": 2,
+    "alphabetIndex": 20,
+    "fivew1h": "when"
+  },
+  "durham": {
+    "keyword": "durham",
+    "frequency": 1,
+    "alphabetIndex": 11,
+    "fivew1h": "where"
+  },
+  "n.c": {
+    "keyword": "n.c",
+    "frequency": 1,
+    "alphabetIndex": 21,
+    "fivew1h": "where"
+  },
+  "a.m": {
+    "keyword": "a.m",
+    "frequency": 1,
+    "alphabetIndex": 0,
+    "fivew1h": "when"
+  },
+  "block": {
+    "keyword": "block",
+    "frequency": 1,
+    "alphabetIndex": 4,
+    "fivew1h": "how"
+  },
+  "air": {
+    "keyword": "air",
+    "frequency": 1,
+    "alphabetIndex": 1,
+    "fivew1h": "how"
+  },
+  "smoke": {
+    "keyword": "smoke",
+    "frequency": 1,
+    "alphabetIndex": 29,
+    "fivew1h": "how"
+  },
+  "blast": {
+    "keyword": "blast",
+    "frequency": 2,
+    "alphabetIndex": 3,
+    "fivew1h": "who"
+  },
+  "north": {
+    "keyword": "north",
+    "frequency": 1,
+    "alphabetIndex": 22,
+    "fivew1h": "what"
+  },
+  "carolina": {
+    "keyword": "carolina",
+    "frequency": 1,
+    "alphabetIndex": 5,
+    "fivew1h": "what"
+  },
+  "city": {
+    "keyword": "city",
+    "frequency": 1,
+    "alphabetIndex": 7,
+    "fivew1h": "what"
+  },
+  "authority": {
+    "keyword": "authority",
+    "frequency": 1,
+    "alphabetIndex": 2,
+    "fivew1h": "why"
+  },
+  "structure": {
+    "keyword": "structure",
+    "frequency": 1,
+    "alphabetIndex": 30,
+    "fivew1h": "why"
+  },
+  "u.s": {
+    "keyword": "u.s",
+    "frequency": 1,
+    "alphabetIndex": 35,
+    "fivew1h": "where"
+  },
+  "trump": {
+    "keyword": "trump",
+    "frequency": 1,
+    "alphabetIndex": 33,
+    "fivew1h": "how"
+  },
+  "lie": {
+    "keyword": "lie",
+    "frequency": 1,
+    "alphabetIndex": 16,
+    "fivew1h": "how"
+  },
+  "china": {
+    "keyword": "china",
+    "frequency": 2,
+    "alphabetIndex": 6,
+    "fivew1h": "how"
+  },
+  "pay": {
+    "keyword": "pay",
+    "frequency": 2,
+    "alphabetIndex": 23,
+    "fivew1h": "how"
+  },
+  "tariff": {
+    "keyword": "tariff",
+    "frequency": 2,
+    "alphabetIndex": 31,
+    "fivew1h": "how"
+  },
+  "u.s.": {
+    "keyword": "u.s.",
+    "frequency": 1,
+    "alphabetIndex": 36,
+    "fivew1h": "what"
+  },
+  "treasury": {
+    "keyword": "treasury",
+    "frequency": 1,
+    "alphabetIndex": 32,
+    "fivew1h": "what"
+  },
+  "middle": {
+    "keyword": "middle",
+    "frequency": 1,
+    "alphabetIndex": 19,
+    "fivew1h": "where"
+  },
+  "east": {
+    "keyword": "east",
+    "frequency": 1,
+    "alphabetIndex": 12,
+    "fivew1h": "where"
+  },
+  "respiratory": {
+    "keyword": "respiratory",
+    "frequency": 1,
+    "alphabetIndex": 27,
+    "fivew1h": "how"
+  },
+  "covid-19": {
+    "keyword": "covid-19",
+    "frequency": 1,
+    "alphabetIndex": 9,
+    "fivew1h": "how"
+  },
+  "mask": {
+    "keyword": "mask",
+    "frequency": 2,
+    "alphabetIndex": 18,
+    "fivew1h": "what"
+  },
+  "virus": {
+    "keyword": "virus",
+    "frequency": 2,
+    "alphabetIndex": 38,
+    "fivew1h": "why"
+  },
+  "face": {
+    "keyword": "face",
+    "frequency": 1,
+    "alphabetIndex": 15,
+    "fivew1h": "why"
+  },
+  "contact": {
+    "keyword": "contact",
+    "frequency": 1,
+    "alphabetIndex": 8,
+    "fivew1h": "why"
+  },
+  "exposure": {
+    "keyword": "exposure",
+    "frequency": 1,
+    "alphabetIndex": 14,
+    "fivew1h": "why"
+  },
+  "droplet": {
+    "keyword": "droplet",
+    "frequency": 1,
+    "alphabetIndex": 10,
+    "fivew1h": "why"
+  },
+  "person": {
+    "keyword": "person",
+    "frequency": 1,
+    "alphabetIndex": 24,
+    "fivew1h": "why"
+  }
+}

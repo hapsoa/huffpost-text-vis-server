@@ -1,3 +1,6 @@
+# 1. combine title, subtitle, content of HuffPost news.
+# 2. lemmatize combined text
+
 from nltk.corpus import wordnet
 from nltk.tag import pos_tag
 from nltk.tokenize import word_tokenize
