@@ -33,6 +33,7 @@ print('process start')
 with open(keywordsTextFilePath, 'a') as f:
     # f.write('\nasdf')
     for i in range(startTextFileLength, len(huffPostData)):
+        # for i in range(startTextFileLength, 22552):
         try:
             print(i, 'th index start')
             huffPostDatum = huffPostData[i]
