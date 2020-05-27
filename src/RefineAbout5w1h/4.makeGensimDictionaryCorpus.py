@@ -9,14 +9,14 @@ import re
 import pandas as pd
 
 # for test file path
-combinedLemmatizedTextsFilePath = '../../5w1h-test-data/combinedLemmatizedTexts.json'
-writingGensimDictionaryFilePath = '../../5w1h-test-data/gensimDictionary.dict'
-writingGensimCorpusFilePath = '../../5w1h-test-data/gensimCorpus.mm'
+# combinedLemmatizedTextsFilePath = '../../5w1h-test-data/combinedLemmatizedTexts.json'
+# writingGensimDictionaryFilePath = '../../5w1h-test-data/gensimDictionary.dict'
+# writingGensimCorpusFilePath = '../../5w1h-test-data/gensimCorpus.mm'
 
 # for real file path
-# combinedLemmatizedTextsFilePath = '../../result-data/combinedLemmatizedTexts.json'
-# writingGensimDictionaryFilePath = '../../result-data/gensimDictionary.dict'
-# writingGensimCorpusFilePath = '../../result-data/gensimCorpus.mm'
+combinedLemmatizedTextsFilePath = '../../5w1h-result-data/combinedLemmatizedTexts.json'
+writingGensimDictionaryFilePath = '../../5w1h-result-data/gensimDictionary.dict'
+writingGensimCorpusFilePath = '../../5w1h-result-data/gensimCorpus.mm'
 
 # read combinedLemmatizedTextsForTest.json
 combinedLemmatizedTexts = json.load(codecs.open(

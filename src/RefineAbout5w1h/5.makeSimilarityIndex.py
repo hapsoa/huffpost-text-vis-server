@@ -4,14 +4,14 @@ from gensim import corpora
 from gensim.similarities import MatrixSimilarity
 
 # for test file path
-gensimDictionaryFilePath = '../../5w1h-test-data/gensimDictionary.dict'
-gensimCorpusFilePath = '../../5w1h-test-data/gensimCorpus.mm'
-writingSimilarityIndexFilePath = '../../5w1h-test-data/similarityIndex'
+# gensimDictionaryFilePath = '../../5w1h-test-data/gensimDictionary.dict'
+# gensimCorpusFilePath = '../../5w1h-test-data/gensimCorpus.mm'
+# writingSimilarityIndexFilePath = '../../5w1h-test-data/similarityIndex'
 
 # for real file path
-# gensimDictionaryFilePath = '../../result-data/gensimDictionary.dict'
-# gensimCorpusFilePath = '../../result-data/gensimCorpus.mm'
-# writingSimilarityIndexFilePath = '../../result-data/similarityIndex'
+gensimDictionaryFilePath = '../../5w1h-result-data/gensimDictionary.dict'
+gensimCorpusFilePath = '../../5w1h-result-data/gensimCorpus.mm'
+writingSimilarityIndexFilePath = '../../5w1h-result-data/similarityIndex'
 
 # load gensim_dictionary and gensim_corpus
 dictionary = corpora.Dictionary.load(gensimDictionaryFilePath)

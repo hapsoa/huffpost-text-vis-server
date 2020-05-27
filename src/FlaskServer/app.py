@@ -14,10 +14,14 @@ cors = CORS(app)
 # test files
 # timeDictAboutKeywordObjectDictFilePath = '../../lda-ner-test-data/timeDictAboutKeywordObjectDictIncludingNerForTest.json'
 
-# real files
-timeDictAboutKeywordObjectDictFilePath = '../../lda-ner-result-data/timeDictAboutKeywordObjectDictIncludingNer.json'
-keywordRelationMatrixTotalTimeFilePath = '../../lda-ner-result-data/keywordRelationMatrixTotalTime.json'
-alphabetIndexDictAboutKeywordFilePath = '../../lda-ner-result-data/alphabetIndexDictAboutKeyword.json'
+# lda-ner files
+# timeDictAboutKeywordObjectDictFilePath = '../../lda-ner-result-data/timeDictAboutKeywordObjectDictIncludingNer.json'
+# keywordRelationMatrixTotalTimeFilePath = '../../lda-ner-result-data/keywordRelationMatrixTotalTime.json'
+# alphabetIndexDictAboutKeywordFilePath = '../../lda-ner-result-data/alphabetIndexDictAboutKeyword.json'
+# 5w1h files
+timeDictAboutKeywordObjectDictFilePath = '../../5w1h-result-data/timeDictAboutKeywordObjectDict.json'
+keywordRelationMatrixTotalTimeFilePath = '../../5w1h-result-data/keywordRelationMatrixTotalTime.json'
+alphabetIndexDictAboutKeywordFilePath = '../../5w1h-result-data/alphabetIndexDictAboutKeyword.json'
 
 timeDictAboutKeywordObjectDict = json.load(codecs.open(
     timeDictAboutKeywordObjectDictFilePath, 'r', 'utf-8-sig'))

@@ -8,7 +8,7 @@ export interface HuffPostDatum {
   title: string;
   subtitle: string;
   content: string;
-  keywords: { keyword: string; fivew1h: Fivew1h }[];
+  keywords: Fivew1hKeyword[];
 }
 
 export interface InvertedIndex {
@@ -49,4 +49,9 @@ export interface TimeDictAbout5w1hDictAboutKeywordObjectDict {
 
 export interface AlphabetIndexDictAboutKeyword {
   [alphabetIndex: number]: string;
+}
+
+export interface Fivew1hKeyword {
+  keyword: string;
+  fivew1h: Fivew1h;
 }

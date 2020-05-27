@@ -1,3 +1,5 @@
+export type Fivew1h = "who" | "where" | "when" | "what" | "why" | "how";
+
 export interface HuffPostDatum {
   url: string;
   category: string;
@@ -6,7 +8,7 @@ export interface HuffPostDatum {
   title: string;
   subtitle: string;
   content: string;
-  keywordObjects: { keyword: string; weight: number }[];
+  keywordObjects: Fivew1hKeyword[];
 }
 
 export interface InvertedIndex {
@@ -16,10 +18,16 @@ export interface InvertedIndex {
 export interface KeywordObject {
   keyword: string;
   frequency: number;
-  weight: number;
   alphabetIndex: number; // alphabet order index
-  ner: string;
+  fivew1h: string;
   yearMonth?: string;
+}
+
+export interface RelatedKeywordObject {
+  keyword: string;
+  relatedFrequency: number;
+  alphabetIndex: number; // alphabet order index
+  fivew1h: string;
 }
 
 export interface KeywordObjectDict {
@@ -30,18 +38,6 @@ export interface TimeDictAboutKeywordObjectDict {
   [time: string]: KeywordObjectDict;
 }
 
-export interface NerDictAboutKeywordObjectDict {
-  [fivew1h: string]: KeywordObjectDict;
-}
-
-export interface TimeDictAboutNerDictAboutKeywordObjectDict {
-  [time: string]: NerDictAboutKeywordObjectDict;
-}
-
-export interface AlphabetIndexDictAboutKeyword {
-  [alphabetIndex: string]: string;
-}
-
 export interface KeywordRelation {
   [keywordIndex: number]: number;
 }
@@ -50,16 +46,20 @@ export interface TimeDictAboutKeywordRelationMatrix {
   [yearMonth: string]: KeywordRelation[];
 }
 
-export interface QueryKeyword {
-  queryKeyword: string;
+// export interface NerDictAboutKeywordObjectDict {
+//   [fivew1h: string]: KeywordObjectDict;
+// }
+
+// export interface TimeDictAboutNerDictAboutKeywordObjectDict {
+//   [time: string]: NerDictAboutKeywordObjectDict;
+// }
+
+export interface AlphabetIndexDictAboutKeyword {
+  [alphabetIndex: string]: string;
 }
 
-export interface RelatedKeywordObject {
-  keyword: string;
-  relatedFrequency: number;
-  weight: number;
-  alphabetIndex: number; // alphabet order index
-  ner: string;
+export interface QueryKeyword {
+  queryKeyword: string;
 }
 
 export interface RelatedKeywordObjectDict {
@@ -68,4 +68,9 @@ export interface RelatedKeywordObjectDict {
 
 export interface TimeDictAboutRelatedKeywordObjectDict {
   [yearMonth: string]: RelatedKeywordObjectDict;
+}
+
+export interface Fivew1hKeyword {
+  keyword: string;
+  fivew1h: Fivew1h;
 }

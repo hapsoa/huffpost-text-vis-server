@@ -14,28 +14,28 @@ import {
 } from "./utils";
 
 // for test file path
-const huffPostDataJsonPath: string =
-  "../../5w1h-test-data/huffPostDataIncludingKeywords.json";
-const keywordObjectDictJsonPath: string =
-  "../../5w1h-test-data/keywordObjectDictTotalTime.json";
-const alphabetIndexDictAboutKeywordFilePath =
-  "../../5w1h-test-data/alphabetIndexDictAboutKeyword.json";
-const writingKeywordRelationMatrixTotalTimeFilePath =
-  "../../5w1h-test-data/keywordRelationMatrixTotalTime.json";
-const writingTimeDictAboutKeywordRelationMatrixFilePath: string =
-  "../../5w1h-test-data/timeDictAboutKeywordRelationMatrix.json";
+// const huffPostDataJsonPath: string =
+//   "../../5w1h-test-data/huffPostDataIncludingKeywords.json";
+// const keywordObjectDictJsonPath: string =
+//   "../../5w1h-test-data/keywordObjectDictTotalTime.json";
+// const alphabetIndexDictAboutKeywordFilePath =
+//   "../../5w1h-test-data/alphabetIndexDictAboutKeyword.json";
+// const writingKeywordRelationMatrixTotalTimeFilePath =
+//   "../../5w1h-test-data/keywordRelationMatrixTotalTime.json";
+// const writingTimeDictAboutKeywordRelationMatrixFilePath: string =
+//   "../../5w1h-test-data/timeDictAboutKeywordRelationMatrix.json";
 
 // for real file path
-// const huffPostDataJsonPath: string =
-//   "../../lda-ner-result-data/huffPostDataIncludingKeywords.json";
-// const keywordObjectDictJsonPath: string =
-//   "../../lda-ner-result-data/keywordObjectDictTotalTime.json";
-// const alphabetIndexDictAboutKeywordFilePath =
-//   "../../lda-ner-result-data/alphabetIndexDictAboutKeyword.json";
-// const writingKeywordRelationMatrixTotalTimeFilePath =
-//   "../../lda-ner-result-data/keywordRelationMatrixTotalTime.json";
-// const writingTimeDictAboutKeywordRelationMatrixFilePath: string =
-//   "../../lda-ner-result-data/timeDictAboutKeywordRelationMatrix.json";
+const huffPostDataJsonPath: string =
+  "../../5w1h-result-data/huffPostDataIncludingKeywords.json";
+const keywordObjectDictJsonPath: string =
+  "../../5w1h-result-data/keywordObjectDictTotalTime.json";
+const alphabetIndexDictAboutKeywordFilePath =
+  "../../5w1h-result-data/alphabetIndexDictAboutKeyword.json";
+const writingKeywordRelationMatrixTotalTimeFilePath =
+  "../../5w1h-result-data/keywordRelationMatrixTotalTime.json";
+const writingTimeDictAboutKeywordRelationMatrixFilePath: string =
+  "../../5w1h-result-data/timeDictAboutKeywordRelationMatrix.json";
 
 const huffPostData: HuffPostDatum[] = require(huffPostDataJsonPath);
 const keywordObjectDict: KeywordObjectDict = require(keywordObjectDictJsonPath);

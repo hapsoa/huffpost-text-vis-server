@@ -13,8 +13,11 @@ import re
 # nltk.download('averaged_perceptron_tagger')
 
 # test file path
-huffPostDataFilePath = '../../5w1h-test-data/rawHuffPostData.json'
-combinedLemmatizedTextsFilePath = '../../5w1h-test-data/combinedLemmatizedTexts.json'
+# huffPostDataFilePath = '../../5w1h-test-data/rawHuffPostData.json'
+# combinedLemmatizedTextsFilePath = '../../5w1h-test-data/combinedLemmatizedTexts.json'
+# real file path
+huffPostDataFilePath = '../../lda-ner-result-data/rawHuffPostData.json'
+combinedLemmatizedTextsFilePath = '../../5w1h-result-data/combinedLemmatizedTexts.json'
 
 
 def get_wordnet_pos(treebank_tag):

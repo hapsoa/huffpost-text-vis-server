@@ -12,24 +12,24 @@ import {
 } from "./utils";
 
 // for test file path
-const readingHuffPostDataIncludingKeywordsJsonPath =
-  "../../5w1h-test-data/huffPostDataIncludingKeywords.json";
-const writingKeywordObjectDictTotalTimeJsonPath =
-  "../../5w1h-test-data/keywordObjectDictTotalTime.json";
-const writingTimeDictAboutKeywordObjectDictEachTimeJsonPath =
-  "../../5w1h-test-data/timeDictAboutKeywordObjectDict.json";
-const writingAlphabetIndexDictAboutKeywordFilePath =
-  "../../5w1h-test-data/alphabetIndexDictAboutKeyword.json";
+// const readingHuffPostDataIncludingKeywordsJsonPath =
+//   "../../5w1h-test-data/huffPostDataIncludingKeywords.json";
+// const writingKeywordObjectDictTotalTimeJsonPath =
+//   "../../5w1h-test-data/keywordObjectDictTotalTime.json";
+// const writingTimeDictAboutKeywordObjectDictEachTimeJsonPath =
+//   "../../5w1h-test-data/timeDictAboutKeywordObjectDict.json";
+// const writingAlphabetIndexDictAboutKeywordFilePath =
+//   "../../5w1h-test-data/alphabetIndexDictAboutKeyword.json";
 
 // for real file path
-// const readingHuffPostDataIncludingKeywordsJsonPath =
-//   "../../lda-ner-result-data/huffPostDataIncludingKeywords.json";
-// const writingKeywordObjectDictTotalTimeJsonPath =
-//   "../../lda-ner-result-data/keywordObjectDictTotalTime.json";
-// const writingTimeDictAboutKeywordObjectDictEachTimeJsonPath =
-//   "../../lda-ner-result-data/timeDictAboutKeywordObjectDict.json";
-// const writingAlphabetIndexDictAboutKeywordFilePath =
-//   "../../lda-ner-result-data/alphabetIndexDictAboutKeyword.json";
+const readingHuffPostDataIncludingKeywordsJsonPath =
+  "../../5w1h-result-data/huffPostDataIncludingKeywords.json";
+const writingKeywordObjectDictTotalTimeJsonPath =
+  "../../5w1h-result-data/keywordObjectDictTotalTime.json";
+const writingTimeDictAboutKeywordObjectDictEachTimeJsonPath =
+  "../../5w1h-result-data/timeDictAboutKeywordObjectDict.json";
+const writingAlphabetIndexDictAboutKeywordFilePath =
+  "../../5w1h-result-data/alphabetIndexDictAboutKeyword.json";
 
 // read huffPostDataIncludingKeywords.json
 const huffPostData: HuffPostDatum[] = require(readingHuffPostDataIncludingKeywordsJsonPath);

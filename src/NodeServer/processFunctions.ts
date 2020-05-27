@@ -15,17 +15,29 @@ import { makeNerTo5w1h, makeYearMonthsFromHuffPostData } from "./utils";
 
 const testData = require("../5w1h-test-data/rawHuffPostData.json");
 
+// const keywordObjectDictTotalTimeFilePath =
+//   "../lda-ner-result-data/keywordObjectDictIncludingNerTotalTime.json";
+// const timeDictAboutKeywordObjectDictFilePath =
+//   "../lda-ner-result-data/timeDictAboutKeywordObjectDictIncludingNer.json";
+// const keywordRelationMatrixTotalTimeFilePath =
+//   "../lda-ner-result-data/keywordRelationMatrixTotalTime.json";
+// const timeDictAboutKeywordRelationMatrixFilePath =
+//   "../lda-ner-result-data/timeDictAboutKeywordRelationMatrix.json";
+// const alphabetIndexDictAboutKeywordFilePath =
+//   "../lda-ner-result-data/alphabetIndexDictAboutKeyword.json";
+// const huffPostDataFilePath = "../lda-ner-result-data/rawHuffPostData.json";
 const keywordObjectDictTotalTimeFilePath =
-  "../lda-ner-result-data/keywordObjectDictIncludingNerTotalTime.json";
+  "../5w1h-result-data/keywordObjectDictTotalTime.json";
 const timeDictAboutKeywordObjectDictFilePath =
-  "../lda-ner-result-data/timeDictAboutKeywordObjectDictIncludingNer.json";
+  "../5w1h-result-data/timeDictAboutKeywordObjectDict.json";
 const keywordRelationMatrixTotalTimeFilePath =
-  "../lda-ner-result-data/keywordRelationMatrixTotalTime.json";
+  "../5w1h-result-data/keywordRelationMatrixTotalTime.json";
 const timeDictAboutKeywordRelationMatrixFilePath =
-  "../lda-ner-result-data/timeDictAboutKeywordRelationMatrix.json";
+  "../5w1h-result-data/timeDictAboutKeywordRelationMatrix.json";
 const alphabetIndexDictAboutKeywordFilePath =
-  "../lda-ner-result-data/alphabetIndexDictAboutKeyword.json";
-const huffPostDataFilePath = "../lda-ner-result-data/rawHuffPostData.json";
+  "../5w1h-result-data/alphabetIndexDictAboutKeyword.json";
+const huffPostDataFilePath =
+  "../5w1h-result-data/huffPostDataIncludingKeywords.json";
 
 const timeDictAboutKeywordObjectDict: TimeDictAboutKeywordObjectDict = require(timeDictAboutKeywordObjectDictFilePath);
 const keywordRelationMatrixTotalTime: KeywordRelation[] = require(keywordRelationMatrixTotalTimeFilePath);
@@ -59,10 +71,9 @@ export function getRelatedKeywordsInTotalTime(
       const keywordObject = keywordObjectDictTotalTime[keyword];
       return {
         keyword,
-        alphabetIndex: keywordObject.alphabetIndex,
         relatedFrequency: frequency,
-        ner: keywordObject.ner,
-        weight: keywordObject.weight,
+        alphabetIndex: keywordObject.alphabetIndex,
+        fivew1h: keywordObject.fivew1h,
       };
     }
   );
@@ -74,8 +85,7 @@ export function getRelatedKeywordsInTotalTime(
   _.forEach(fivew1hs, (fivew1h) => {
     const topRelatedKeywordObject = _.chain(relatedKeywordObjects)
       .filter(
-        (relatedKeywordObject) =>
-          makeNerTo5w1h(relatedKeywordObject.ner) === fivew1h
+        (relatedKeywordObject) => relatedKeywordObject.fivew1h === fivew1h
       )
       .maxBy(
         (filteredRelatedKeywordObject) =>
@@ -119,9 +129,7 @@ export function getTimeDictAboutRelatedKeywordObjectDictInEachTime(
           keyword,
           alphabetIndex: keywordObject.alphabetIndex,
           relatedFrequency: frequency,
-          ner: keywordObject.ner,
-          weight: keywordObject.weight,
-          yearMonth,
+          fivew1h: keywordObject.fivew1h,
         };
       }
     );
@@ -130,8 +138,7 @@ export function getTimeDictAboutRelatedKeywordObjectDictInEachTime(
     _.forEach(fivew1hs, (fivew1h) => {
       const topRelatedKeywordObject = _.chain(relatedKeywordObjects)
         .filter(
-          (relatedKeywordObject) =>
-            makeNerTo5w1h(relatedKeywordObject.ner) === fivew1h
+          (relatedKeywordObject) => relatedKeywordObject.fivew1h === fivew1h
         )
         .maxBy(
           (filteredRelatedKeywordObject) =>
@@ -173,8 +180,7 @@ export function getRelatedKeywordsInTime(
         keyword: alphabetIndexDictAboutKeyword[keywordAlphabetIndex],
         alphabetIndex: Number(keywordAlphabetIndex),
         relatedFrequency: frequency,
-        ner: keywordObject.ner,
-        weight: keywordObject.weight,
+        fivew1h: keywordObject.fivew1h,
       };
     }
   );
@@ -186,8 +192,7 @@ export function getRelatedKeywordsInTime(
   _.forEach(fivew1hs, (fivew1h) => {
     const topRelatedKeywordObject = _.chain(relatedKeywordObjects)
       .filter(
-        (relatedKeywordObject) =>
-          makeNerTo5w1h(relatedKeywordObject.ner) === fivew1h
+        (relatedKeywordObject) => relatedKeywordObject.fivew1h === fivew1h
       )
       .maxBy(
         (filteredRelatedKeywordObject) =>

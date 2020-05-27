@@ -3,16 +3,17 @@ from gensim import corpora
 import json
 import codecs
 
-huffPostDataFilePath = '../../lda-ner-result-data/huffPostDataIncludingKeywords.json'
+# huffPostDataFilePath = '../../lda-ner-result-data/huffPostDataIncludingKeywords.json'
+huffPostDataFilePath = '../../5w1h-result-data/huffPostDataIncludingKeywords.json'
 
 huffPostData = json.load(codecs.open(huffPostDataFilePath, 'r', 'utf-8-sig'))
 
 # corpus = corpora.MmCorpus('../../lda-ner-result-data/gensimCorpus.mm')
 dictionary = corpora.Dictionary.load(
-    '../../lda-ner-result-data/gensimDictionary.dict')
+    '../../5w1h-result-data/gensimDictionary.dict')
 # load similarity_index
 similarityIndex = MatrixSimilarity.load(
-    '../../lda-ner-result-data/similarityIndex')
+    '../../5w1h-result-data/similarityIndex')
 
 
 def getTopKDocuments(queryKeywords):
