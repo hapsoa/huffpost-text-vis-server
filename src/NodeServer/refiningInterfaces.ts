@@ -39,7 +39,7 @@ export interface TimeDictAboutKeywordObjectDict {
 }
 
 export interface KeywordRelation {
-  [keywordIndex: number]: number;
+  [keywordIndex: number]: number; // frequency
 }
 
 export interface TimeDictAboutKeywordRelationMatrix {
