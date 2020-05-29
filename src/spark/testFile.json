@@ -1,4 +1,10 @@
-{
-  "age": 30,
-  "name": "Jaejong"
-}
+[
+  {
+    "age": 30,
+    "name": "Jaejong"
+  },
+  {
+    "age": 30,
+    "name": "Kahyeon"
+  }
+]
