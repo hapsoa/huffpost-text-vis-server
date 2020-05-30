@@ -41,7 +41,7 @@ def foreachFunction2(array, resultData):
     print('inner resultData', resultData)
 
 
-def reduceFunction(rows, result, resultData):
+def reduceFunction(rows, result):
     print('rows!!!', rows)
     print('result!!!', result)
     for rowElement in rows:
@@ -79,8 +79,7 @@ filtered = rdd.filter(lambda rows: filterFunction(
 
 # filtered.foreach(lambda rows: foreachFunction2(rows, resultData=resultData))
 
-result1 = filtered.reduce(
-    lambda rows, result: reduceFunction(rows, result, resultData))
+result1 = filtered.reduce(reduceFunction)
 
 # print('resultData', resultData)
 # why outer resultData is gone?
