@@ -1,6 +1,8 @@
 from pyspark.sql import SparkSession
 import numpy as np
 import pyspark
+from pyspark.sql import Row
+import json
 
 sampleResultData = {
     "what": {
@@ -13,17 +15,11 @@ sampleResultData = {
 resultData = {
     "what": {}, "where": {}, "when": {}, "who": {}, "why": {}, "how": {}
 }
-queryKeyword = 'trump'
 
-
-def foreachFunction(array):
-    for element in array:
-        print('element', element.keyword)
-    return True
+queryKeyword = 'president'
 
 
 def filterFunction(array, queryKeyword):
-    # print('rr', array)
     flag = False
     for element in array:
         if queryKeyword == element.keyword:
@@ -32,59 +28,72 @@ def filterFunction(array, queryKeyword):
     return flag
 
 
-def foreachFunction2(array, resultData):
-    for rowElement in array:
-        print('rowElement', rowElement)
-        resultData[rowElement['fivew1h']
-                   ][rowElement['keyword']] = 1
-    # make relation
-    print('inner resultData', resultData)
-
-
-def reduceFunction(rows, result):
-    print('rows!!!', rows)
-    print('result!!!', result)
+def mapFunction(rows):
+    fivew1hDictAboutKeywordDictAboutFrequency = {
+        "what": {}, "where": {}, "when": {}, "who": {}, "why": {}, "how": {}
+    }
     for rowElement in rows:
-        result[rowElement['fivew1h']
-               ][rowElement['keyword']] = 1
-    # make relation
-    print('inner resultData', resultData)
-    print('inner result', result)
-    return result
+        if rowElement['keyword'] != queryKeyword:
+            if rowElement['keyword'] not in fivew1hDictAboutKeywordDictAboutFrequency[rowElement['fivew1h']]:
+                fivew1hDictAboutKeywordDictAboutFrequency[rowElement['fivew1h']
+                                                          ][rowElement['keyword']] = 1
+            else:
+                fivew1hDictAboutKeywordDictAboutFrequency[rowElement['fivew1h']
+                                                          ][rowElement['keyword']] += 1
+    return fivew1hDictAboutKeywordDictAboutFrequency
+
+
+def reduceFunction3(keywordDict1, keywordDict2):
+    for (keyword, frequency) in keywordDict2.items():
+        if keyword not in keywordDict1:
+            keywordDict1[keyword] = frequency
+        else:
+            keywordDict1[keyword] += frequency
+    return keywordDict1
 
 
 spark = SparkSession.builder.appName("SimpleApp").getOrCreate()
 
-# keywordRelationMatrix = spark.read.json(
-#     '../../5w1h-test-data/keywordRelationMatrixTotalTime.json', multiLine=True).cache()
-# # keywordRelationMatrix.filter(lambda parameter_list: expression)
-# # keywordRelationMatrix.printSchema()
-# print(keywordRelationMatrix.take(2))
-# keywordRelationMatrix.select()
+
+# huffPostDataFilePath = '../../5w1h-test-data/huffPostDataIncludingKeywords.json'
+huffPostDataFilePath = '../../5w1h-result-data/huffPostDataIncludingKeywords.json'
 
 # realtime making network
 huffPostData = spark.read.json(
-    '../../5w1h-test-data/huffPostDataIncludingKeywords.json', multiLine=True)
+    huffPostDataFilePath, multiLine=True)
 huffPostData.printSchema()
 huffPostData.show()
-# huffPostData.filter(lambda df: df.title)
 
+# print(1)
 rdd = huffPostData.rdd.map(lambda r: r.keywords)
-# print(rdd.take(2))
-
-# rdd.foreach(foreachFunction)
+# print(2)
 filtered = rdd.filter(lambda rows: filterFunction(
     rows, queryKeyword=queryKeyword))
-# print('filtered', filtered.take(1))
+# print(3)
+fivew1hDicts = filtered.map(mapFunction)
+# print('fivew1hDicts', fivew1hDicts.take(1))
 
-# filtered.foreach(lambda rows: foreachFunction2(rows, resultData=resultData))
+keywordDictsOfWhat = fivew1hDicts.map(lambda fivew1hDict: fivew1hDict['what'])
+# print('keywordDictsOfWhat.take(1)', keywordDictsOfWhat.take(4))
 
-result1 = filtered.reduce(reduceFunction)
+result = keywordDictsOfWhat.reduce(reduceFunction3)
+# print('result', result)
 
-# print('resultData', resultData)
-# why outer resultData is gone?
+result2 = []
+for (keyword, frequency) in result.items():
+    result2.append(Row(keyword=keyword, frequency=frequency))
 
-print('result1', result1)
+
+result3 = spark.createDataFrame(result2)
+
+result4 = result3.sort('frequency', ascending=False)
+result4.show()
+
+result5 = spark.createDataFrame(result4.head(5)).toPandas().to_json()
+
+
+# result5 = result4.toPandas().to_json()
+print('result5', result5)
 
 
 spark.stop()
