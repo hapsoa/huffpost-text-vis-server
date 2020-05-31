@@ -14,5 +14,4 @@ print("Lines with a: %i, lines with b: %i" % (numAs, numBs))
 array = np.array([1, 2, 3])
 print('array', array)
 
-
 spark.stop()

@@ -20,5 +20,10 @@ def post():
     })
 
 
+@app.route('/related-keywords', methods=['POST'])
+def make_related_keywords():
+    SparkFunctions.get_related_keywords(request.json)
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=5001)

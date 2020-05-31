@@ -26,3 +26,4 @@ lda-ner-result-data
 5w1h-result-data
 node-dist
 src/FlaskServer/__pycache__/
+src/spark/__pycache__/

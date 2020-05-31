@@ -90,14 +90,14 @@ result5 = spark.createDataFrame(result4.head(1)).toPandas().to_json()
 print('result5', result5)
 
 result6 = json.loads(result5)
-print('reuslt6', result6)
+print('result6', result6)
 
 result7 = {
     "keyword": result6['keyword']['0'],
     "frequency": result6['frequency']['0'],
     "fivew1h": "what"
 }
-print('reuslt7', result7)
+print('result7', result7)
 
 
 spark.stop()

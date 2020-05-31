@@ -25,6 +25,7 @@
   "scripts": {
     "node-server-start": "npx tsc && node node-dist",
     "flask-server-start": "cd src/FlaskServer && python ./app.py",
+    "spark-flask-server-start": "cd src/spark && python ./FlaskServerForSpark.py",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
