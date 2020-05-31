@@ -64,12 +64,9 @@ huffPostData = spark.read.json(
 huffPostData.printSchema()
 huffPostData.show()
 
-# print(1)
 rdd = huffPostData.rdd.map(lambda r: r.keywords)
-# print(2)
 filtered = rdd.filter(lambda rows: filterFunction(
     rows, queryKeyword=queryKeyword))
-# print(3)
 fivew1hDicts = filtered.map(mapFunction)
 # print('fivew1hDicts', fivew1hDicts.take(1))
 
@@ -89,11 +86,18 @@ result3 = spark.createDataFrame(result2)
 result4 = result3.sort('frequency', ascending=False)
 result4.show()
 
-result5 = spark.createDataFrame(result4.head(5)).toPandas().to_json()
-
-
-# result5 = result4.toPandas().to_json()
+result5 = spark.createDataFrame(result4.head(1)).toPandas().to_json()
 print('result5', result5)
+
+result6 = json.loads(result5)
+print('reuslt6', result6)
+
+result7 = {
+    "keyword": result6['keyword']['0'],
+    "frequency": result6['frequency']['0'],
+    "fivew1h": "what"
+}
+print('reuslt7', result7)
 
 
 spark.stop()
