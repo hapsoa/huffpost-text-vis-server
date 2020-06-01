@@ -1,6 +1,4 @@
-testObject = {'property': 'PERSON'}
+fivew1hs = ['what', 'who', 'where', 'when', 'why', 'how']
+result = map(lambda fivew1h: fivew1h + '!', fivew1hs)
 
-result = 'propertdy' in testObject
-
-# result = hasattr(testObject, 'property')
-print('result', result)
+print('result', list(result))

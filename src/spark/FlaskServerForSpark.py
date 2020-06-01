@@ -5,7 +5,6 @@ from flask import jsonify
 from flask_cors import CORS  # installation command : pip install -U flask-cors
 import json
 import codecs
-# from . import SparkFunctions
 import SparkFunctions
 
 app = Flask(__name__)
@@ -22,8 +21,8 @@ def post():
 
 @app.route('/related-keywords', methods=['POST'])
 def make_related_keywords():
-    SparkFunctions.get_related_keywords(request.json)
-
+    result_of_what = SparkFunctions.get_related_keywords(request.json)
+    return jsonify(result_of_what)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
