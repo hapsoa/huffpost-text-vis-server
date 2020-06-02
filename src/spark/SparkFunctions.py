@@ -10,11 +10,9 @@ huffPostDataFilePath = '../../5w1h-result-data/huffPostDataIncludingKeywords.jso
 huffPostData = spark.read.json(
     huffPostDataFilePath, multiLine=True)
 
+# [[Row(fivew1h='who', keyword='play'), ...], ...]
 df_fivew1h_keywords_array = huffPostData.rdd.map(lambda r: r.keywords)
 
-
-# print('df_fivew1h_keywords_array', df_fivew1h_keywords_array.take(2))
-# [[Row(fivew1h='who', keyword='play'), ...], ...]
 
 def filter_keyword_dicts(rows, query_keyword):
     flag = False
@@ -40,11 +38,6 @@ def map_function(rows_of_fivew1h_keyword, query_keyword):
     return fivew1h_dict_about_keyword_dict_about_frequency
 
 
-# def map_function2(fivew1h):
-#     return fivew1h_dicts.map(
-#         lambda fivew1h_dict: fivew1h_dict[fivew1h])
-
-
 def reduce_keyword_dicts_by_frequency(keyword_dict1, keyword_dict2):
     for (keyword, frequency) in keyword_dict2.items():
         if keyword not in keyword_dict1:
@@ -58,7 +51,13 @@ def get_result(fivew1h, df_fivew1h_dicts):
     keyword_dict_of_fivew1h = df_fivew1h_dicts.map(
         lambda fivew1h_dicts: fivew1h_dicts[fivew1h]).reduce(reduce_keyword_dicts_by_frequency)
     keyword_frequency_tuple = sorted(keyword_dict_of_fivew1h.items(), key=lambda key_value: -key_value[1])[0]
-    return keyword_frequency_tuple
+
+    result = {
+        "keyword": keyword_frequency_tuple[0],
+        "fivew1h": fivew1h,
+        "frequency": keyword_frequency_tuple[1]
+    }
+    return result
 
 
 def get_related_keywords(query_keywords):
@@ -72,7 +71,7 @@ def get_related_keywords(query_keywords):
                                                                         query_keywords[0])).cache()
     # print('df_fivew1h_dicts', df_fivew1h_dicts.take(2))
     # [{'what': {'electoral': 1, 'college': 1}, 'who': ...}, ...]
- 
+
     what_result = get_result('what', df_fivew1h_dicts)
     where_result = get_result('where', df_fivew1h_dicts)
     when_result = get_result('when', df_fivew1h_dicts)
@@ -80,18 +79,4 @@ def get_related_keywords(query_keywords):
     why_result = get_result('why', df_fivew1h_dicts)
     how_result = get_result('how', df_fivew1h_dicts)
 
-    return {
-        'what': what_result,
-        'where': where_result,
-        'when': when_result,
-        'who': who_result,
-        'why': why_result,
-        'how': how_result
-    }
-
-    # keyword_dicts_of_what = df_fivew1h_dicts.map(
-    #     lambda fivew1h_dict: fivew1h_dict['what'])
-    # result_of_what = keyword_dicts_of_what.reduce(reduce_function)
-
-    # print(5, result_of_what)
-    # return result_of_what
+    return [what_result, where_result, when_result, who_result, why_result, how_result]
