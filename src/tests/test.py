@@ -1,4 +1,22 @@
-fivew1hs = ['what', 'who', 'where', 'when', 'why', 'how']
-result = map(lambda fivew1h: fivew1h + '!', fivew1hs)
+class Decorator:
 
-print('result', list(result))
+    def __init__(self, function):
+        self.function = function
+
+    def __call__(self, *args, **kwargs):
+        print('전처리')
+        print(self.function(*args, **kwargs))
+        print('후처리')
+
+
+@Decorator
+def example():
+    return '클래스'
+
+
+example()
+'''''''''
+전처리
+클래스
+후처리
+'''''''''

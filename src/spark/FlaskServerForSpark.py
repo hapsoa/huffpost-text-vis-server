@@ -24,5 +24,12 @@ def make_related_keywords():
     result_of_what = SparkFunctions.get_related_keywords(request.json)
     return jsonify(result_of_what)
 
+
+@app.route('/related-keywords-fast', methods=['POST'])
+def make_related_keywords_fast():
+    result_of_what = SparkFunctions.get_related_keywords(request.json)
+    return jsonify(result_of_what)
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=5001)

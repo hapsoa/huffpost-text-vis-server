@@ -80,3 +80,8 @@ def get_related_keywords(query_keywords):
     how_result = get_result('how', df_fivew1h_dicts)
 
     return [what_result, where_result, when_result, who_result, why_result, how_result]
+
+
+# TODO
+def get_related_keywords_fast(query_keywords):
+    return []
