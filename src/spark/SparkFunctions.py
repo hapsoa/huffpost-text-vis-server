@@ -55,7 +55,7 @@ def get_result(fivew1h, df_fivew1h_dicts):
     result = {
         "keyword": keyword_frequency_tuple[0],
         "fivew1h": fivew1h,
-        "frequency": keyword_frequency_tuple[1]
+        "relatedFrequency": keyword_frequency_tuple[1]
     }
     return result
 

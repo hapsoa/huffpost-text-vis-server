@@ -3,9 +3,9 @@ import {
     KeywordObjectDict,
     HuffPostDatum,
     KeywordObject,
-    AlphabetIndexDictAboutKeyword,
-    TimeDictAboutKeywordRelationMatrix,
-    KeywordRelation,
+    AlphabetIndexDictAboutKeyword, TimeDictAboutNewKeywordRelationMatrix, NewKeywordRelation,
+    // TimeDictAboutKeywordRelationMatrix,
+    // KeywordRelation,
 } from './refiningInterfaces';
 import _ = require("lodash");
 import {
@@ -15,15 +15,15 @@ import {
 
 // for test file path
 // const huffPostDataJsonPath: string =
-//   "../../5w1h-test-data/huffPostDataIncludingKeywords.json";
+//     "../../5w1h-test-data/huffPostDataIncludingKeywords.json";
 // const keywordObjectDictJsonPath: string =
-//   "../../5w1h-test-data/keywordObjectDictTotalTime.json";
+//     "../../5w1h-test-data/keywordObjectDictTotalTime.json";
 // const alphabetIndexDictAboutKeywordFilePath =
-//   "../../5w1h-test-data/alphabetIndexDictAboutKeyword.json";
+//     "../../5w1h-test-data/alphabetIndexDictAboutKeyword.json";
 // const writingKeywordRelationMatrixTotalTimeFilePath =
-//   "../../5w1h-test-data/keywordRelationMatrixTotalTime.json";
+//     "../../5w1h-test-data/newKeywordRelationMatrixTotalTime.json";
 // const writingTimeDictAboutKeywordRelationMatrixFilePath: string =
-//   "../../5w1h-test-data/timeDictAboutKeywordRelationMatrix.json";
+//     "../../5w1h-test-data/timeDictAboutNewKeywordRelationMatrix.json";
 
 // for real file path
 const huffPostDataJsonPath: string =
@@ -33,9 +33,10 @@ const keywordObjectDictJsonPath: string =
 const alphabetIndexDictAboutKeywordFilePath =
     "../../5w1h-result-data/alphabetIndexDictAboutKeyword.json";
 const writingKeywordRelationMatrixTotalTimeFilePath =
-    "../../5w1h-result-data/keywordRelationMatrixTotalTime.json";
+    "../../5w1h-result-data/newKeywordRelationMatrixTotalTime.json";
 const writingTimeDictAboutKeywordRelationMatrixFilePath: string =
-    "../../5w1h-result-data/timeDictAboutKeywordRelationMatrix.json";
+    "../../5w1h-result-data/timeDictAboutNewKeywordRelationMatrix.json";
+
 
 const huffPostData: HuffPostDatum[] = require(huffPostDataJsonPath);
 const keywordObjectDict: KeywordObjectDict = require(keywordObjectDictJsonPath);
@@ -43,7 +44,7 @@ const alphabetIndexDictAboutKeyword: AlphabetIndexDictAboutKeyword = require(alp
 
 console.log("start");
 
-const timeDictAboutKeywordRelationMatrix: TimeDictAboutKeywordRelationMatrix = {};
+const timeDictAboutKeywordRelationMatrix: TimeDictAboutNewKeywordRelationMatrix = {};
 
 // sparse matrix
 // [
@@ -59,13 +60,13 @@ timeUnits.forEach((timeUnit) => {
     }
 });
 console.log("keywordRelationMatrixTotalTime start");
-const keywordRelationMatrixTotalTime: KeywordRelation[] = [];
+const keywordRelationMatrixTotalTime: NewKeywordRelation[] = [];
 for (let i = 0; i < Object.keys(keywordObjectDict).length; i++) {
     keywordRelationMatrixTotalTime.push({});
 }
 
 // for each post, make relation of keyword and another keyword in keywordObjects
-huffPostData.forEach((huffPostDatum) => {
+huffPostData.forEach((huffPostDatum, huffPostDatumIndex) => {
     const yearMonth: string = getYearMonthFromStringDate(huffPostDatum.date);
     huffPostDatum.keywords.forEach((fivew1hKeyword1) => {
         huffPostDatum.keywords.forEach((fivew1hKeyword2) => {
@@ -75,14 +76,14 @@ huffPostData.forEach((huffPostDatum) => {
                 const j = keywordObjectDict[fivew1hKeyword2.keyword].alphabetIndex;
                 // for total time dict
                 keywordRelationMatrixTotalTime[i].hasOwnProperty(j)
-                    ? (keywordRelationMatrixTotalTime[i][j] += 1)
-                    : (keywordRelationMatrixTotalTime[i][j] = 1);
+                    ? (keywordRelationMatrixTotalTime[i][j][huffPostDatumIndex] = true)
+                    : (keywordRelationMatrixTotalTime[i][j] = {[huffPostDatumIndex]: true});
                 // for 1month time dict
                 const keywordRelationMatrix1Month =
                     timeDictAboutKeywordRelationMatrix[yearMonth];
                 keywordRelationMatrix1Month[i].hasOwnProperty(j)
-                    ? (keywordRelationMatrix1Month[i][j] += 1)
-                    : (keywordRelationMatrix1Month[i][j] = 1);
+                    ? (keywordRelationMatrix1Month[i][j][huffPostDatumIndex] = true)
+                    : (keywordRelationMatrix1Month[i][j] = {[huffPostDatumIndex]: true});
             }
         });
     });
