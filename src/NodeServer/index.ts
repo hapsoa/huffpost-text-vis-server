@@ -34,16 +34,19 @@ app.get(
     }
 );
 
-// by search
+
+/**
+ * by mainViz search
+ */
 app.post(
     "/related-keywords",
     (
-        req: express.Request<any, any, QueryKeyword, any>,
+        req: express.Request<any, any, string[], any>,
         res: express.Response
     ) => {
-        console.log("related-keywords req!", req.body.queryKeyword);
-
-        const queryKeyword: string = req.body.queryKeyword;
+        const queryKeywords: string[] = req.body;
+        console.log("related-keywords req!", queryKeywords);
+        const queryKeyword: string = req.body[0];
         const keywordObjectDictTotalTime = getKeywordObjectDictTotalTime();
         const queryKeywordObject = keywordObjectDictTotalTime[queryKeyword];
         const relatedKeywordObjectDictInTotalTime: RelatedKeywordObjectDict = getNewRelatedKeywordsInTotalTime(
@@ -63,6 +66,10 @@ app.post(
     }
 );
 
+
+/**
+ * 1) clicked WordStream keyword or 2) in time, clicked network keyword
+ */
 app.post(
     "/related-keywords-in-time",
     (
