@@ -1,78 +1,84 @@
 export type Fivew1h = "who" | "where" | "when" | "what" | "why" | "how";
 
 export interface HuffPostDatum {
-    url: string;
-    category: string;
-    date: string;
-    dateIndex: number;
-    title: string;
-    subtitle: string;
-    content: string;
-    keywordObjects: Fivew1hKeyword[];
+  url: string;
+  category: string;
+  date: string;
+  dateIndex: number;
+  title: string;
+  subtitle: string;
+  content: string;
+  keywordObjects: Fivew1hKeyword[];
 }
 
 export interface InvertedIndex {
-    [keywordInDictionary: string]: number[];
+  [keywordInDictionary: string]: number[];
 }
 
 export interface KeywordObject {
-    keyword: string;
-    frequency: number;
-    alphabetIndex: number; // alphabet order index
-    fivew1h: Fivew1h;
-    yearMonth?: string;
+  keyword: string;
+  frequency: number;
+  alphabetIndex: number; // alphabet order index
+  fivew1h: Fivew1h;
+  yearMonth?: string;
 }
 
 export interface RelatedKeywordObject {
-    keyword: string;
-    relatedFrequency: number;
-    alphabetIndex: number; // alphabet order index
-    fivew1h: string;
+  keyword: string;
+  relatedFrequency: number;
+  alphabetIndex: number; // alphabet order index
+  fivew1h: string;
 }
 
 export interface KeywordObjectDict {
-    [keyword: string]: KeywordObject;
+  [keyword: string]: KeywordObject;
 }
 
 export interface TimeDictAboutKeywordObjectDict {
-    [time: string]: KeywordObjectDict;
+  [time: string]: KeywordObjectDict;
 }
 
 export interface KeywordRelation {
-    [keywordIndex: number]: number; // frequency
+  [keywordIndex: number]: number; // frequency
 }
 
 export interface TimeDictAboutKeywordRelationMatrix {
-    [yearMonth: string]: KeywordRelation[];
+  [yearMonth: string]: KeywordRelation[];
 }
 
 export interface NewKeywordRelation {
-    [keywordIndex: number]: {
-        [huffPostIndex: number]: true;
-    }
+  [keywordIndex: number]: {
+    [huffPostIndex: number]: true;
+  }
 }
 
 export interface TimeDictAboutNewKeywordRelationMatrix {
-    [yearMonth: string]: NewKeywordRelation[];
+  [yearMonth: string]: NewKeywordRelation[];
 }
 
 export interface AlphabetIndexDictAboutKeyword {
-    [alphabetIndex: string]: string;
+  [alphabetIndex: string]: string;
 }
 
 export interface QueryKeyword {
-    queryKeyword: string;
+  queryKeyword: string;
 }
 
 export interface RelatedKeywordObjectDict {
-    [relatedKeyword: string]: RelatedKeywordObject;
+  [relatedKeyword: string]: RelatedKeywordObject;
 }
 
 export interface TimeDictAboutRelatedKeywordObjectDict {
-    [yearMonth: string]: RelatedKeywordObjectDict;
+  [yearMonth: string]: RelatedKeywordObjectDict;
 }
 
 export interface Fivew1hKeyword {
-    keyword: string;
-    fivew1h: Fivew1h;
+  keyword: string;
+  fivew1h: Fivew1h;
+}
+
+export interface CombinationOfRelatedKeyword {
+  queryKeywordObject: KeywordObject;
+  relatedKeywordObjectDictInTotalTime: RelatedKeywordObjectDict;
+  timeDictAboutRelatedKeywordObjectDict: TimeDictAboutRelatedKeywordObjectDict;
 }
