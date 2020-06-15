@@ -77,8 +77,13 @@ export interface Fivew1hKeyword {
   fivew1h: Fivew1h;
 }
 
-export interface CombinationOfRelatedKeyword {
+export interface CombinationOfRelatedKeywordsTotalTime {
   queryKeywordObject: KeywordObject;
   relatedKeywordObjectDictInTotalTime: RelatedKeywordObjectDict;
   timeDictAboutRelatedKeywordObjectDict: TimeDictAboutRelatedKeywordObjectDict;
+}
+
+export interface CombinationOfRelatedKeywords {
+  queryKeywordObject: KeywordObject;
+  relatedKeywordObjectDict: RelatedKeywordObjectDict;
 }

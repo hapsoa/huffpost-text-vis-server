@@ -301,7 +301,7 @@ export function getRelatedKeywordsInTime(
       const keywordObject = timeDictAboutKeywordObjectDict[yearMonth][keyword];
 
       return {
-        keyword: alphabetIndexDictAboutKeyword[keywordAlphabetIndex],
+        keyword,
         alphabetIndex: Number(keywordAlphabetIndex),
         relatedFrequency: Object.keys(dictForFrequency).length,
         fivew1h: keywordObject.fivew1h,

@@ -13,7 +13,7 @@ import {
   RelatedKeywordObject,
   RelatedKeywordObjectDict,
   TimeDictAboutRelatedKeywordObjectDict,
-  KeywordObject, CombinationOfRelatedKeyword,
+  KeywordObject, CombinationOfRelatedKeywordsTotalTime, CombinationOfRelatedKeywords,
 } from "./refiningInterfaces";
 import _ from "lodash";
 
@@ -49,7 +49,7 @@ app.post(
     console.log("related-keywords req!", queryKeywords);
     const keywordObjectDictTotalTime = getKeywordObjectDictTotalTime();
 
-    const results = _.map<string, CombinationOfRelatedKeyword>(queryKeywords, queryKeyword => {
+    const results = _.map<string, CombinationOfRelatedKeywordsTotalTime>(queryKeywords, queryKeyword => {
       const queryKeywordObject = keywordObjectDictTotalTime[queryKeyword];
       const relatedKeywordObjectDictInTotalTime: RelatedKeywordObjectDict = getNewRelatedKeywordsInTotalTime(
         queryKeyword
@@ -79,25 +79,31 @@ app.post(
 app.post(
   "/related-keywords-in-time",
   (
-    req: express.Request<any, any, KeywordObject, any>,
+    req: express.Request<any, any, KeywordObject[], any>,
     res: express.Response
   ) => {
-    // console.log("/related-keywords-in-time req!", req.body);
+    const queryKeywordObjects = req.body;
 
-    const queryKeywordObject: KeywordObject = req.body;
-    const relatedKeywordObjectDictInTotalTime: RelatedKeywordObjectDict = getRelatedKeywordsInTime(
-      queryKeywordObject,
-      queryKeywordObject.yearMonth as string
-    );
+    const combinationsOfRelatedKeywords =
+      _.map<KeywordObject, CombinationOfRelatedKeywords>(queryKeywordObjects, queryKeywordObject => {
+        const relatedKeywordObjectDictInTime
+          = getRelatedKeywordsInTime(
+          queryKeywordObject,
+          queryKeywordObject.yearMonth as string
+        );
+
+        return {
+          queryKeywordObject,
+          relatedKeywordObjectDict: relatedKeywordObjectDictInTime
+        }
+      })
+
 
     // send top k documents. this can be done by flask server.
-
-    res.send({
-      queryKeywordObject,
-      relatedKeywordObjectDictInTotalTime,
-    });
+    res.send(combinationsOfRelatedKeywords);
   }
 );
+
 
 /**
  * For SearchProcessVisualization
