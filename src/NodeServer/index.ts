@@ -3,10 +3,10 @@ import cors = require("cors");
 import bodyParser = require("body-parser");
 import {
   getTimeDictAboutKeywordObjectDict,
-  getNewRelatedKeywordsInTotalTime,
-  getTimeDictAboutRelatedKeywordObjectDictInEachTime,
+  getRelatedKeywordObjectDictInTotalTime,
+  getTimeDictAboutRelatedKeywordObjectDict,
   getKeywordObjectDictTotalTime,
-  getRelatedKeywordsInTime, getRelatedKeywordsForSpv, getRelatedKeywordsForSpvInUpgrade,
+  getRelatedKeywordObjectDictInTime, getRelatedKeywordsForSpvInUpgrade,
 } from "./processFunctions";
 import {
   QueryKeyword,
@@ -49,12 +49,12 @@ app.post(
     console.log("related-keywords req!", queryKeywords);
     const keywordObjectDictTotalTime = getKeywordObjectDictTotalTime();
 
-    const results = _.map<string, CombinationOfRelatedKeywordsTotalTime>(queryKeywords, queryKeyword => {
+    const combinationsOfRelatedKeywordsTotalTime = _.map<string, CombinationOfRelatedKeywordsTotalTime>(queryKeywords, queryKeyword => {
       const queryKeywordObject = keywordObjectDictTotalTime[queryKeyword];
-      const relatedKeywordObjectDictInTotalTime: RelatedKeywordObjectDict = getNewRelatedKeywordsInTotalTime(
+      const relatedKeywordObjectDictInTotalTime: RelatedKeywordObjectDict = getRelatedKeywordObjectDictInTotalTime(
         queryKeyword
       );
-      const timeDictAboutRelatedKeywordObjectDict: TimeDictAboutRelatedKeywordObjectDict = getTimeDictAboutRelatedKeywordObjectDictInEachTime(
+      const timeDictAboutRelatedKeywordObjectDict: TimeDictAboutRelatedKeywordObjectDict = getTimeDictAboutRelatedKeywordObjectDict(
         queryKeyword
       );
 
@@ -63,12 +63,26 @@ app.post(
         relatedKeywordObjectDictInTotalTime,
         timeDictAboutRelatedKeywordObjectDict,
       }
-    })
+    });
 
 
-    // send top k documents. this can be done by flask server.
+    res.send(combinationsOfRelatedKeywordsTotalTime);
+  }
+);
 
-    res.send(results);
+app.post(
+  "/intersected-time-dict-about-related-keyword-object-dict",
+  (
+    req: express.Request<any, any, string[], any>,
+    res: express.Response
+  ) => {
+
+    const queryKeywords: string[] = req.body;
+    const intersectedRelatedKeywordObjectDict: TimeDictAboutRelatedKeywordObjectDict = {};
+
+    //
+
+    res.send(intersectedRelatedKeywordObjectDict);
   }
 );
 
@@ -87,7 +101,7 @@ app.post(
     const combinationsOfRelatedKeywords =
       _.map<KeywordObject, CombinationOfRelatedKeywords>(queryKeywordObjects, queryKeywordObject => {
         const relatedKeywordObjectDictInTime
-          = getRelatedKeywordsInTime(
+          = getRelatedKeywordObjectDictInTime(
           queryKeywordObject,
           queryKeywordObject.yearMonth as string
         );

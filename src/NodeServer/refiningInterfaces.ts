@@ -38,22 +38,22 @@ export interface TimeDictAboutKeywordObjectDict {
   [time: string]: KeywordObjectDict;
 }
 
+// export interface KeywordRelation {
+//   [keywordIndex: number]: number; // frequency
+// }
+
+// export interface TimeDictAboutKeywordRelationMatrix {
+//   [yearMonth: string]: KeywordRelation[];
+// }
+
 export interface KeywordRelation {
-  [keywordIndex: number]: number; // frequency
-}
-
-export interface TimeDictAboutKeywordRelationMatrix {
-  [yearMonth: string]: KeywordRelation[];
-}
-
-export interface NewKeywordRelation {
   [keywordIndex: number]: {
     [huffPostIndex: number]: true;
   }
 }
 
-export interface TimeDictAboutNewKeywordRelationMatrix {
-  [yearMonth: string]: NewKeywordRelation[];
+export interface TimeDictAboutKeywordRelationMatrix {
+  [yearMonth: string]: KeywordRelation[];
 }
 
 export interface AlphabetIndexDictAboutKeyword {
