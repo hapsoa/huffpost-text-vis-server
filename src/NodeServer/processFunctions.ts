@@ -35,7 +35,7 @@ const huffPostDataFilePath =
   "../5w1h-result-data/huffPostDataIncludingKeywords.json";
 
 const timeDictAboutKeywordObjectDict: TimeDictAboutKeywordObjectDict = require(timeDictAboutKeywordObjectDictFilePath);
-const newKeywordRelationMatrixTotalTime: KeywordRelation[] = require(newKeywordRelationMatrixTotalTimeFilePath);
+const keywordRelationMatrixTotalTime: KeywordRelation[] = require(newKeywordRelationMatrixTotalTimeFilePath);
 const alphabetIndexDictAboutKeyword: AlphabetIndexDictAboutKeyword = require(alphabetIndexDictAboutKeywordFilePath);
 const keywordObjectDictTotalTime: KeywordObjectDict = require(keywordObjectDictTotalTimeFilePath);
 const timeDictAboutNewKeywordRelationMatrix: TimeDictAboutKeywordRelationMatrix = require(timeDictAboutNewKeywordRelationMatrixFilePath);
@@ -57,7 +57,7 @@ export function getRelatedKeywordObjectDictInTotalTime(
 
   // find related keywords of query_keyword
   const keywordRelation: KeywordRelation =
-    newKeywordRelationMatrixTotalTime[queryKeywordAlphabetIndex];
+    keywordRelationMatrixTotalTime[queryKeywordAlphabetIndex];
 
   const relatedKeywordObjects: RelatedKeywordObject[] = _.map(
     keywordRelation,
@@ -98,72 +98,25 @@ export function getRelatedKeywordObjectDictInTotalTime(
   return topRelatedKeywordObjectDict;
 }
 
-// export function getRelatedKeywordsForSpv(
-//   queryKeyword: string
-// ): SunburstDatum[] {
-//   const queryKeywordObject = keywordObjectDictTotalTime[queryKeyword];
-//   const queryKeywordAlphabetIndex: number = queryKeywordObject.alphabetIndex;
-//
-//   // find related keywords of query_keyword
-//   const keywordRelation: KeywordRelation =
-//     newKeywordRelationMatrixTotalTime[queryKeywordAlphabetIndex];
-//
-//   const relatedKeywordObjects: SunburstDatum[] = _.map(
-//     keywordRelation,
-//     (dictForFrequency, keywordAlphabetIndex) => {
-//       const keyword = alphabetIndexDictAboutKeyword[keywordAlphabetIndex];
-//       const keywordObject = keywordObjectDictTotalTime[keyword];
-//       return {
-//         keyword,
-//         relatedFrequency: Object.keys(dictForFrequency).length,
-//         fivew1h: keywordObject.fivew1h
-//       };
-//     }
-//   );
-//
-//   // get top frequent keywordObject at each 5w1h
-//   const fivew1hs: string[] = ["who", "where", "when", "what", "how", "why"];
-//
-//   const sunburstData: SunburstDatum[] = [];
-//   _.forEach(fivew1hs, (fivew1h) => {
-//     const topRelatedKeywordObject = _.chain(relatedKeywordObjects)
-//       .filter(
-//         (relatedKeywordObject) => relatedKeywordObject.fivew1h === fivew1h
-//       )
-//       .maxBy(
-//         (filteredRelatedKeywordObject) =>
-//           filteredRelatedKeywordObject.relatedFrequency
-//       )
-//       .value();
-//
-//     if (topRelatedKeywordObject) {
-//       sunburstData.push(topRelatedKeywordObject);
-//     }
-//   });
-//
-//   // return topRelatedKeywordObjectDict;
-//   return sunburstData
-// }
 
-
-export function getRelatedKeywordsForSpvInUpgrade(
+export function getRelatedKeywordsForSpv(
   currentQueryKeyword: string, pastQueryKeywords: string[]
 ): SunburstDatum[] {
   const queryKeywordObject = keywordObjectDictTotalTime[currentQueryKeyword];
   const queryKeywordAlphabetIndex: number = queryKeywordObject.alphabetIndex;
 
   // find related keywords of query_keywords
-  const keywordRelation: KeywordRelation =
-    newKeywordRelationMatrixTotalTime[queryKeywordAlphabetIndex];
+  const currentKeywordRelation: KeywordRelation =
+    keywordRelationMatrixTotalTime[queryKeywordAlphabetIndex];
   const pastQueryKeywordRelations: KeywordRelation[]
     = _.map(pastQueryKeywords, pastQueryKeyword => {
     const pastQueryKeywordObject = keywordObjectDictTotalTime[pastQueryKeyword];
-    return newKeywordRelationMatrixTotalTime[pastQueryKeywordObject.alphabetIndex];
+    return keywordRelationMatrixTotalTime[pastQueryKeywordObject.alphabetIndex];
   });
 
   // make candidates of relatedKeywords
   const relatedKeywordObjects: SunburstDatum[] = _.map(
-    keywordRelation,
+    currentKeywordRelation,
     (huffPostIndexDict, relatedKeywordAlphabetIndex) => {
       // related keyword
       const relatedKeyword = alphabetIndexDictAboutKeyword[relatedKeywordAlphabetIndex];
@@ -185,9 +138,7 @@ export function getRelatedKeywordsForSpvInUpgrade(
         });
 
         if (hasHuffPostInAllPastQueryKeywords) relatedFrequency++;
-
       });
-
 
       return {
         keyword: relatedKeyword,
@@ -279,6 +230,66 @@ export function getTimeDictAboutRelatedKeywordObjectDict(
 
   return timeDictAboutRelatedKeywordObjectDict;
 }
+
+export function getTimeDictAboutIntersectedRelatedKeywordObjectDict(
+  queryKeywords: string[]
+): TimeDictAboutRelatedKeywordObjectDict {
+  const timeDictAboutIntersectedRelatedKeywordObjectDict: TimeDictAboutRelatedKeywordObjectDict = {};
+
+  const queryKeywordObjects = _.map<string, KeywordObject>(queryKeywords, queryKeyword =>
+    keywordObjectDictTotalTime[queryKeyword]
+  );
+
+  const yearMonths = makeYearMonthsFromHuffPostData(huffPostData);
+
+
+  _.forEach(yearMonths, yearMonth => {
+    timeDictAboutIntersectedRelatedKeywordObjectDict[yearMonth] = {};
+
+    const queryKeywordRelations =
+      _.map<KeywordObject, KeywordRelation>(queryKeywordObjects, queryKeywordObject =>
+        timeDictAboutNewKeywordRelationMatrix[yearMonth][queryKeywordObject.alphabetIndex]);
+
+    const relatedKeywordObjects: RelatedKeywordObject[] = _.map(queryKeywordRelations[0],
+      (huffPostIndexDict, relatedKeywordAlphabetIndex) => {
+        // related keyword
+        const relatedKeyword = alphabetIndexDictAboutKeyword[relatedKeywordAlphabetIndex];
+        const relatedKeywordObject = keywordObjectDictTotalTime[relatedKeyword];
+
+        // pastQueryKeyword
+        // how to check relatedKeyword comparing to pastQueryKeywords
+        let relatedFrequency: number = 0;
+        _.forEach(huffPostIndexDict, (booleanTrue, huffPostIndex) => {
+          // If huffPostIndex is all in pastQueryKeywordRelation, then frequency++
+          let hasHuffPostInAllPastQueryKeywords: boolean = true;
+          _.forEach(queryKeywordRelations, pastQueryKeywordRelation => {
+            const huffPostIndexDict2 = pastQueryKeywordRelation[Number(relatedKeywordAlphabetIndex)];
+            if (huffPostIndexDict2 &&
+              !huffPostIndexDict2.hasOwnProperty(Number(huffPostIndex))) {
+              hasHuffPostInAllPastQueryKeywords = false;
+              return false;
+            }
+          });
+
+          if (hasHuffPostInAllPastQueryKeywords) relatedFrequency++;
+        });
+
+        return {
+          keyword: relatedKeyword,
+          relatedFrequency,
+          fivew1h: relatedKeywordObject.fivew1h,
+          alphabetIndex: relatedKeywordObject.alphabetIndex
+        };
+      });
+
+    // TODO find top relatedKeyword
+
+  });
+
+
+  return timeDictAboutIntersectedRelatedKeywordObjectDict;
+}
+
 
 export function getRelatedKeywordObjectDictInTime(
   queryKeywordObject: KeywordObject,

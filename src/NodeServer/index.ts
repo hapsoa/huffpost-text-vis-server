@@ -6,7 +6,7 @@ import {
   getRelatedKeywordObjectDictInTotalTime,
   getTimeDictAboutRelatedKeywordObjectDict,
   getKeywordObjectDictTotalTime,
-  getRelatedKeywordObjectDictInTime, getRelatedKeywordsForSpvInUpgrade,
+  getRelatedKeywordObjectDictInTime, getRelatedKeywordsForSpv,
 } from "./processFunctions";
 import {
   QueryKeyword,
@@ -144,7 +144,7 @@ app.post('/related-keywords-fast-for-spv',
 
     const currentQueryKeyword = queryKeywords.pop();
 
-    const children = getRelatedKeywordsForSpvInUpgrade(
+    const children = getRelatedKeywordsForSpv(
       currentQueryKeyword as string, queryKeywords);
 
     res.send(children);
