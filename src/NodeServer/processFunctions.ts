@@ -130,8 +130,17 @@ export function getRelatedKeywordsForSpv(
         let hasHuffPostInAllPastQueryKeywords: boolean = true;
         _.forEach(pastQueryKeywordRelations, pastQueryKeywordRelation => {
           const huffPostIndexDict2 = pastQueryKeywordRelation[Number(relatedKeywordAlphabetIndex)];
-          if (huffPostIndexDict2 &&
-            !huffPostIndexDict2.hasOwnProperty(Number(huffPostIndex))) {
+          // if (huffPostIndexDict2 &&
+          //   !huffPostIndexDict2.hasOwnProperty(Number(huffPostIndex))) {
+          //   hasHuffPostInAllPastQueryKeywords = false;
+          //   return false;
+          // }
+          if (huffPostIndexDict2) {
+            if (!huffPostIndexDict2.hasOwnProperty(Number(huffPostIndex))) {
+              hasHuffPostInAllPastQueryKeywords = false;
+              return false;
+            }
+          } else {
             hasHuffPostInAllPastQueryKeywords = false;
             return false;
           }
@@ -241,6 +250,7 @@ export function getTimeDictAboutIntersectedRelatedKeywordObjectDict(
   );
 
   const yearMonths = makeYearMonthsFromHuffPostData(huffPostData);
+  const fivew1hs: string[] = ["who", "where", "when", "what", "how", "why"];
 
 
   _.forEach(yearMonths, yearMonth => {
@@ -264,8 +274,13 @@ export function getTimeDictAboutIntersectedRelatedKeywordObjectDict(
           let hasHuffPostInAllPastQueryKeywords: boolean = true;
           _.forEach(queryKeywordRelations, pastQueryKeywordRelation => {
             const huffPostIndexDict2 = pastQueryKeywordRelation[Number(relatedKeywordAlphabetIndex)];
-            if (huffPostIndexDict2 &&
-              !huffPostIndexDict2.hasOwnProperty(Number(huffPostIndex))) {
+
+            if (huffPostIndexDict2) {
+              if (!huffPostIndexDict2.hasOwnProperty(Number(huffPostIndex))) {
+                hasHuffPostInAllPastQueryKeywords = false;
+                return false;
+              }
+            } else {
               hasHuffPostInAllPastQueryKeywords = false;
               return false;
             }
@@ -282,8 +297,25 @@ export function getTimeDictAboutIntersectedRelatedKeywordObjectDict(
         };
       });
 
-    // TODO find top relatedKeyword
+    const topRelatedKeywordObjectDict: RelatedKeywordObjectDict = {};
+    _.forEach(fivew1hs, (fivew1h) => {
+      const topRelatedKeywordObject = _.chain(relatedKeywordObjects)
+        .filter(
+          (relatedKeywordObject) => relatedKeywordObject.fivew1h === fivew1h
+        )
+        .maxBy(
+          (filteredRelatedKeywordObject) =>
+            filteredRelatedKeywordObject.relatedFrequency
+        )
+        .value();
+      if (topRelatedKeywordObject && topRelatedKeywordObject.relatedFrequency > 0) {
+        topRelatedKeywordObjectDict[
+          topRelatedKeywordObject.keyword
+          ] = topRelatedKeywordObject;
+      }
+    });
 
+    timeDictAboutIntersectedRelatedKeywordObjectDict[yearMonth] = topRelatedKeywordObjectDict;
   });
 
 

@@ -6,7 +6,7 @@ import {
   getRelatedKeywordObjectDictInTotalTime,
   getTimeDictAboutRelatedKeywordObjectDict,
   getKeywordObjectDictTotalTime,
-  getRelatedKeywordObjectDictInTime, getRelatedKeywordsForSpv,
+  getRelatedKeywordObjectDictInTime, getRelatedKeywordsForSpv, getTimeDictAboutIntersectedRelatedKeywordObjectDict,
 } from "./processFunctions";
 import {
   QueryKeyword,
@@ -78,9 +78,8 @@ app.post(
   ) => {
 
     const queryKeywords: string[] = req.body;
-    const intersectedRelatedKeywordObjectDict: TimeDictAboutRelatedKeywordObjectDict = {};
-
-    //
+    const intersectedRelatedKeywordObjectDict: TimeDictAboutRelatedKeywordObjectDict =
+      getTimeDictAboutIntersectedRelatedKeywordObjectDict(queryKeywords);
 
     res.send(intersectedRelatedKeywordObjectDict);
   }
