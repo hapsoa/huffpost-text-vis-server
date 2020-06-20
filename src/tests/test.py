@@ -1,22 +1,4 @@
-class Decorator:
+test_array = [1, 2, 3, 4, 5]
 
-    def __init__(self, function):
-        self.function = function
-
-    def __call__(self, *args, **kwargs):
-        print('전처리')
-        print(self.function(*args, **kwargs))
-        print('후처리')
-
-
-@Decorator
-def example():
-    return '클래스'
-
-
-example()
-'''''''''
-전처리
-클래스
-후처리
-'''''''''
+result = filter(lambda item: item % 2 == 0, test_array)
+print('result', list(result))

@@ -7,7 +7,6 @@ import json
 import codecs
 import topKDocumentsRetrieval
 
-
 app = Flask(__name__)
 cors = CORS(app)
 
@@ -33,19 +32,32 @@ alphabetIndexDictAboutKeyword = json.load(codecs.open(
 
 @app.route('/', methods=['POST'])
 def post():
-    print('asdfasdf')
     return jsonify({
         "hello": "hello"
     })
 
-# get top k documents from query keyword
-@app.route('/top-k-documents', methods=['POST'])
-def getTimeDictAboutKeywordObjectDict():
-    queryKeywords = request.json
-    topKHuffPostData = topKDocumentsRetrieval.getTopKDocuments(
-        queryKeywords)
 
-    return jsonify(topKHuffPostData)
+# get top k documents from query keyword in total time
+@app.route('/top-k-documents', methods=['POST'])
+def get_top_k_documents_total_time():
+    query_keywords = request.json
+    top_k_huff_post_data = topKDocumentsRetrieval.get_top_k_documents_total_time(
+        query_keywords)
+
+    return jsonify(top_k_huff_post_data)
+
+
+# get top k documents from query keyword in time
+@app.route('/top-k-documents-in-time', methods=['POST'])
+def get_top_k_documents_in_time():
+    # query_keywords = request.json
+    request_data = request.json
+    query_keywords = request_data['queryKeywords']
+    year_month = request_data['yearMonth']
+
+    top_k_huff_post_data = topKDocumentsRetrieval.get_top_k_documents_in_time(query_keywords, year_month)
+
+    return jsonify(top_k_huff_post_data)
 
 
 if __name__ == '__main__':
