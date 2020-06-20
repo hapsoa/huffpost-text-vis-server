@@ -9,7 +9,7 @@ import {
 } from './refiningInterfaces';
 import _ = require("lodash");
 import {
-    makeMonthUnitsFromHuffPostData,
+    makeYearMonthsFromHuffPostData,
     getYearMonthFromStringDate,
 } from "./utils";
 
@@ -51,7 +51,7 @@ const timeDictAboutKeywordRelationMatrix: TimeDictAboutNewKeywordRelationMatrix 
 //   {2(keyword0-keyword2): 0.76(weight), 5: 0.8, ...},
 //   ...
 // ]
-const timeUnits: string[] = makeMonthUnitsFromHuffPostData(huffPostData);
+const timeUnits: string[] = makeYearMonthsFromHuffPostData(huffPostData);
 timeUnits.forEach((timeUnit) => {
     console.log("timeUnit", timeUnit);
     timeDictAboutKeywordRelationMatrix[timeUnit] = [];

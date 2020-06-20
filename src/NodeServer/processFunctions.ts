@@ -78,6 +78,9 @@ export function getRelatedKeywordObjectDictInTotalTime(
 
   const topRelatedKeywordObjectDict: RelatedKeywordObjectDict = {};
   _.forEach(fivew1hs, (fivew1h) => {
+    /**
+     * single keyword version
+     */
     const topRelatedKeywordObject = _.chain(relatedKeywordObjects)
       .filter(
         (relatedKeywordObject) => relatedKeywordObject.fivew1h === fivew1h
@@ -87,12 +90,37 @@ export function getRelatedKeywordObjectDictInTotalTime(
           filteredRelatedKeywordObject.relatedFrequency
       )
       .value();
-
     if (topRelatedKeywordObject) {
       topRelatedKeywordObjectDict[
         topRelatedKeywordObject.keyword
         ] = topRelatedKeywordObject;
     }
+
+    /**
+     * multiple version
+     */
+    // const sortedRelatedKeywordObjects = _.chain(relatedKeywordObjects)
+    //   .filter(
+    //     (relatedKeywordObject) => relatedKeywordObject.fivew1h === fivew1h
+    //   )
+    //   .sortBy(
+    //     (filteredRelatedKeywordObject) =>
+    //       -filteredRelatedKeywordObject.relatedFrequency
+    //   )
+    //   .value();
+    //
+    // if (sortedRelatedKeywordObjects[0]) {
+    //   topRelatedKeywordObjectDict[
+    //     sortedRelatedKeywordObjects[0].keyword
+    //     ] = sortedRelatedKeywordObjects[0];
+    // }
+    // if (sortedRelatedKeywordObjects[1]) {
+    //   topRelatedKeywordObjectDict[
+    //     sortedRelatedKeywordObjects[1].keyword
+    //     ] = sortedRelatedKeywordObjects[1];
+    // }
+
+
   });
 
   return topRelatedKeywordObjectDict;

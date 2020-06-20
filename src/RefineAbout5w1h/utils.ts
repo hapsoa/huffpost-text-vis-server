@@ -1,23 +1,23 @@
-import { HuffPostDatum } from './refiningInterfaces';
+import {HuffPostDatum} from './refiningInterfaces';
 
 /**
  * make time unit by each month
  * @param innerHuffPostData
  */
-export function makeMonthUnitsFromHuffPostData(innerHuffPostData: HuffPostDatum[]): string[] {
-  const times: string[] = [];
+export function makeYearMonthsFromHuffPostData(innerHuffPostData: HuffPostDatum[]): string[] {
+  const yearMonths: string[] = [];
 
   const initialDate: Date = new Date(innerHuffPostData[0].date);
   const lastDate: Date = new Date(innerHuffPostData[innerHuffPostData.length - 1].date);
 
   while (initialDate.getFullYear() + '-' + initialDate.getMonth() <=
-    lastDate.getFullYear() + '-' + lastDate.getMonth()) {
-    times.push(initialDate.getFullYear() + '-' +
+  lastDate.getFullYear() + '-' + lastDate.getMonth()) {
+    yearMonths.push(initialDate.getFullYear() + '-' +
       getStringMonthFromNumberMonth(initialDate.getMonth() + 1))
     initialDate.setMonth(initialDate.getMonth() + 1);
   }
 
-  return times;
+  return yearMonths;
 }
 
 /**

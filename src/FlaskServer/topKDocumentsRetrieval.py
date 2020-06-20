@@ -33,3 +33,10 @@ def getTopKDocuments(queryKeywords):
         topKHuffPostData.append(huffPostData[sim[0]])
 
     return topKHuffPostData
+
+
+# read gensimDictionary and gensimCorpus in time
+
+
+def get_top_k_documents(query_keywords, year_month):
+    return ''
