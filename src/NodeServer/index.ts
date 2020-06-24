@@ -70,6 +70,9 @@ app.post(
   }
 );
 
+/**
+ * Main Visualization's multiple query keywords search
+ */
 app.post(
   "/intersected-time-dict-about-related-keyword-object-dict",
   (

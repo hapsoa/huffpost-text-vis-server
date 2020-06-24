@@ -180,6 +180,7 @@ export function getRelatedKeywordsForSpv(
       return {
         keyword: relatedKeyword,
         relatedFrequency,
+        originalRelatedFrequency: relatedFrequency,
         fivew1h: relatedKeywordObject.fivew1h
       };
     }
